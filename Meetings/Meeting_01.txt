@@ -1,0 +1,12 @@
+26-09-2017, Library room GL-1018
+
+Decisions made:		Technologies:	Java, JUnit, JFrame, Git, expansions for HTML
+
+					Roles:	Listed in READ.ME
+					
+					Scope:	Electronic Coffee Shop system
+					
+					Classes: Included in photo
+					
+					
+Requirements stage began.
