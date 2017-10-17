@@ -1,9 +1,7 @@
 package UI;
 
+import Business.Profiles.Profile;
+
 public abstract class UI {
-    
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
     
 }
