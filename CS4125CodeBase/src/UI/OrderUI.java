@@ -4,7 +4,7 @@ import Business.Information_Managers.OrderObserver;
 import Business.Order;
 import java.util.ArrayList;
 
-public class OrderUI extends UI implements OrderObserver{
+public class OrderUI implements UI, OrderObserver{
 
     ArrayList<Order> orders;
     
@@ -18,6 +18,12 @@ public class OrderUI extends UI implements OrderObserver{
             case "DEL": orders.remove(order);break;
             
         }
+    }
+
+    @Override
+    public void draw()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -11,13 +11,13 @@ public class OrderDB implements Subject{
     @Override
     public void attachObserver(OrderObserver observer)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        observers.add(observer);
     }
 
     @Override
     public void dettachObserver(OrderObserver observer)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        observers.remove(observer);
     }
 
     @Override

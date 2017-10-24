@@ -1,5 +1,5 @@
 package UI;
 
-public class ProfileUI extends UI {
+public class ProfileUI implements UI {
     
 }

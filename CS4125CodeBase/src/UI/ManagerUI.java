@@ -1,5 +1,5 @@
 package UI;
 
-public class ManagerUI extends UI {
+public class ManagerUI implements UI {
     
 }
