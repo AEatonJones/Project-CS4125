@@ -4,6 +4,8 @@ import Data.Menu;
 
 public class Cafe extends Profile {
 
+    private String name;
+    private String address;
     private Menu cafeMenu;
     private int numberOfEmployees;
     

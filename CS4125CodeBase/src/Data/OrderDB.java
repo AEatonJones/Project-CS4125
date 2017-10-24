@@ -8,6 +8,7 @@ public class OrderDB implements Subject{
 
     private ArrayList<OrderObserver> observers;
     
+    
     public OrderDB()
     {
         observers = new ArrayList<OrderObserver>();
