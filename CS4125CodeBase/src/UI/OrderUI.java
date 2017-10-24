@@ -2,7 +2,9 @@ package UI;
 
 import Business.Information_Managers.OrderObserver;
 import Business.Order;
+import java.awt.*;
 import java.util.ArrayList;
+import javax.swing.*;
 
 public class OrderUI implements UI, OrderObserver{
 
@@ -23,7 +25,9 @@ public class OrderUI implements UI, OrderObserver{
     @Override
     public void draw()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JFrame orderWindow = new JFrame("Orders!");
+        orderWindow.setLayout(new BorderLayout());
+        
     }
     
 }

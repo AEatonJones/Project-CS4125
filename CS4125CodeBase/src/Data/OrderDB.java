@@ -6,7 +6,17 @@ import java.util.ArrayList;
 
 public class OrderDB implements Subject{
 
-    ArrayList<OrderObserver> observers = new ArrayList<OrderObserver>();
+    private ArrayList<OrderObserver> observers;
+    
+    public OrderDB()
+    {
+        observers = new ArrayList<OrderObserver>();
+    }
+    
+    public void addOrder(Order order)
+    {
+        
+    }
     
     @Override
     public void attachObserver(OrderObserver observer)
