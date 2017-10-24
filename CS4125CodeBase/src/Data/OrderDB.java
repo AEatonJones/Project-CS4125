@@ -8,15 +8,24 @@ public class OrderDB implements Subject{
 
     private ArrayList<OrderObserver> observers;
     
+    private static OrderDB instance = null;
     
-    public OrderDB()
+    private OrderDB()
     {
         observers = new ArrayList<OrderObserver>();
     }
     
+    public static OrderDB getInstance()
+    {
+        if(instance == null)
+            instance = new OrderDB();
+        
+        return instance;
+    }
+    
     public void addOrder(Order order)
     {
-        
+        notifyObservers(order, "ADD");
     }
     
     @Override

@@ -25,8 +25,6 @@ public class OrderUI implements UI, OrderObserver{
     @Override
     public void draw()
     {
-        JFrame orderWindow = new JFrame("Orders!");
-        orderWindow.setLayout(new BorderLayout());
         
     }
     
