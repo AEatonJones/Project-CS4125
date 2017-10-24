@@ -1,0 +1,4 @@
+Cafe Waffe:
+Americano, 4.50
+Latte, 3:40
+Waffe special, 7.00

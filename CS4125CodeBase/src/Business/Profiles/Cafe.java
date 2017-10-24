@@ -6,10 +6,10 @@ public class Cafe extends Profile {
 
     private String name;
     private String address;
-    private Menu cafeMenu;
     private int numberOfEmployees;
+    private Menu cafeMenu;
     
-    public Cafe(String email, String number, String type) {
+    public Cafe(String email, String number) {
         super(email,number);
         
     }
@@ -19,4 +19,8 @@ public class Cafe extends Profile {
         return name;
     }
        
+    public Menu getMenu()
+    {
+        return cafeMenu;
+    }
 }
