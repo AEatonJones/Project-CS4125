@@ -3,6 +3,8 @@ package Business.Information_Managers;
 import Business.Order;
 import Data.OrderDB;
 
-public class OrderObserver {
-
+public interface OrderObserver{
+    
+    public abstract void update(Order order, String action);
+    
 }
