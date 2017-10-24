@@ -8,7 +8,7 @@ public class Cafe extends Profile {
     private int numberOfEmployees;
     
     public Cafe(String email, String number, String type) {
-        super(email,number,type);
+        super(email,number);
         
     }
     
