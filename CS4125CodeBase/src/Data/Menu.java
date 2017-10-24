@@ -13,4 +13,9 @@ public class Menu {
         this.cafe = cafe;
         this.choices = choices;
     }
+    
+    public ArrayList<Order> getChoices()
+    {
+        return choices;
+    }
 }

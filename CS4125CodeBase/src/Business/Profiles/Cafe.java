@@ -11,7 +11,7 @@ public class Cafe extends Profile {
     private int employeeCount;
     private Menu cafeMenu;
     
-    public Cafe(String email, String number, String name, String address, int employeeCount) throws IOException {
+    public Cafe(String name, String address, int employeeCount, String email, String number) throws IOException {
         super(email,number);
         this.name = name;
         this.address = address;

@@ -13,7 +13,7 @@ public class CustomerUI implements UI{
     public CustomerUI(Cafe cafe)
     {
         this.cafe = cafe;
-        orderChoice = new ArrayList<Order>();
+        orderChoice = cafe.getMenu().getChoices();
         promptUser();
     }
     
