@@ -20,9 +20,9 @@ public class ProfileFactory
         //public Customer(String firstname, String surname, String email, String password,String number,String type)
         String firstname = null, surname = null, email = null, password = null, number = null;
         
-        String [] customerDetails = (JOptionPane).split(",");//Use JOPtion pane with comma seperated values to get customerdetails
+        //String [] customerDetails = (JOptionPane).split(",");//Use JOPtion pane with comma seperated values to get customerdetails
         
-        firstname = customerDetails[0];
+        //firstname = customerDetails[0];
         
         profile = new Customer(firstname, surname, email, password, number);
         

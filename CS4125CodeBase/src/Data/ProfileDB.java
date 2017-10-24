@@ -20,8 +20,8 @@ public class ProfileDB {
     public Cafe getCafeByDetails(String name, String address) throws IOException
     {
         Cafe result = null;
-        
-        BufferedReader reader = new BufferedReader(new FileReader(".\\resources\\Profiles\\Cafe\\Cafes.txt"));
+        String filepath = "C:\\Users\\Jack\\Desktop\\UML-Project-CS4125\\CS4125CodeBase\\src\\Resources\\Profiles\\Cafe\\Cafes.txt";
+        BufferedReader reader = new BufferedReader(new FileReader(filepath));
         String line;
         boolean found = false;
         while(((line = reader.readLine()) != null) && !found) 
@@ -48,8 +48,8 @@ public class ProfileDB {
     public ArrayList<Order> getMenuFromCafe(Cafe cafe) throws IOException
     {
         ArrayList<Order> result = new ArrayList<Order>();
-        
-        BufferedReader reader = new BufferedReader(new FileReader(".\\resources\\Profiles\\Cafe\\Menus.txt"));
+        String filepath = "C:\\Users\\Jack\\Desktop\\UML-Project-CS4125\\CS4125CodeBase\\src\\Resources\\Profiles\\Cafe\\Menus.txt";
+        BufferedReader reader = new BufferedReader(new FileReader(filepath));
         String line;
         boolean found = false;
         while(((line = reader.readLine()) != null) && !found) 
