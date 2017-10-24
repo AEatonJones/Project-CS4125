@@ -8,7 +8,7 @@ public class Order {
     private String name;
     private float cost;
     
-    public Order(Cafe cafe, float cost, String name){
+    public Order(Cafe cafe, String name, float cost){
         this.cafe = cafe;
         this.name = name;
         this.cost = cost;

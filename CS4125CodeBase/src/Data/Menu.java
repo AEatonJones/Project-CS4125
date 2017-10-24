@@ -8,8 +8,9 @@ public class Menu {
     Cafe cafe;
     ArrayList<Order> choices;
     
-    public Menu(Cafe cafe)
+    public Menu(Cafe cafe, ArrayList<Order> choices)
     {
         this.cafe = cafe;
+        this.choices = choices;
     }
 }
