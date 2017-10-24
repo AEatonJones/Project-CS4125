@@ -14,4 +14,9 @@ public class Cafe extends Profile {
         
     }
     
+    public String getName()
+    {
+        return name;
+    }
+       
 }
