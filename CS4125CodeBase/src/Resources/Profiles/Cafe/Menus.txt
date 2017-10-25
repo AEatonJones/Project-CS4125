@@ -1,5 +1,7 @@
 Cafe Waffe:
 Americano, 4.50
 Latte, 3.40
-Waffe special, 7.00
+Chilled, 5.20
+Waffe-special, 7.00
+Sweet tea, 3.00
 end.
