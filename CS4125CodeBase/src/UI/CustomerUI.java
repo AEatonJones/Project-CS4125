@@ -26,7 +26,7 @@ public class CustomerUI implements UI{
         Scanner input = new Scanner(System.in);
         int choice = input.nextInt();
         
-        System.out.println("You chose " + orderChoice.get(choice));
+        System.out.println("That'll cost you " + orderChoice.get(choice - 1).getCost() + " euro");
         
         OrderDB.getInstance().addOrder(orderChoice.get(choice));
     }

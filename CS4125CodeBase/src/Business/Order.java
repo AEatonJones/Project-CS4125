@@ -19,5 +19,10 @@ public class Order {
         String string = cafe.getName() + "," + name + " = " + cost;
         return string;
     }
+
+    public float getCost()
+    {
+        return cost;
+    }
     
 }
