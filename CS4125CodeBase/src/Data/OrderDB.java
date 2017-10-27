@@ -2,9 +2,12 @@ package Data;
 
 import Business.Information_Managers.OrderObserver;
 import Business.Order;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class OrderDB implements Subject{
+public class OrderDB implements Database<Order>, Subject{
 
     private ArrayList<OrderObserver> observers;
     
@@ -25,7 +28,15 @@ public class OrderDB implements Subject{
     
     public void addOrder(Order order)
     {
-        notifyObservers(order, "ADD");
+        try
+        {
+            writeToFile(order);
+            notifyObservers(order, "ADD");
+        } 
+        catch (IOException ex)
+        {
+            Logger.getLogger(OrderDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Override
@@ -47,6 +58,17 @@ public class OrderDB implements Subject{
         {
             observer.update(order, action);
         }
+    }
+
+    @Override
+    public void writeToFile(Order data)throws IOException
+    {
+        File file = new File(".\\Resources\\Orders\\Orders.txt");
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+        
+        writer.append(data.toString());
+        
+        writer.close();
     }
     
 }
