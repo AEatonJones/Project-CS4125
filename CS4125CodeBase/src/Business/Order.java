@@ -1,27 +1,26 @@
 package Business;
 
 import Business.Profiles.Cafe;
+import Data.MenuItem;
 
 public class Order {
     
-    private Cafe cafe;
-    private String name;
-    private float cost;
+    MenuItem [] menuItems;
     
-    public Order(Cafe cafe, String name, float cost){
-        this.cafe = cafe;
-        this.name = name;
-        this.cost = cost;
+    public Order(MenuItem [] menuItems){
+        this.menuItems = menuItems;
     }
     
-    @Override
-    public String toString(){
-        String string = cafe.getName() + "," + name + " = " + cost;
-        return string;
-    }
+    
 
     public float getCost()
     {
+        float cost = 0.0f;
+        
+        for(MenuItem item : menuItems){
+            cost += item.getCost();
+        }
+        
         return cost;
     }
     

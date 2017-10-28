@@ -2,13 +2,13 @@ package UI;
 
 import Business.Order;
 import Business.Profiles.Cafe;
-import Data.OrderDB;
+import Data.*;
 import java.util.*;
 
 public class CustomerUI implements UI{
 
     Cafe cafe;
-    ArrayList<Order> orderChoice;
+    ArrayList<MenuItem> orderChoice;
     
     public CustomerUI(Cafe cafe)
     {
@@ -24,11 +24,20 @@ public class CustomerUI implements UI{
             System.out.println(orderCount + "):" + orderChoice.get(orderCount - 1));
         
         Scanner input = new Scanner(System.in);
-        int choice = input.nextInt();
+        String choices = input.nextLine();
+        String [] choiceArray = choices.split(",");
+        MenuItem [] items = new MenuItem[choiceArray.length];
+        float totalCost = 0.0f;
+        for(int itemCount = 0; itemCount < choiceArray.length; itemCount++)
+        {
+            items[itemCount] = orderChoice.get(Integer.parseInt(choiceArray[itemCount]));
+        }
         
-        System.out.println("That'll cost you " + orderChoice.get(choice - 1).getCost() + " euro");
+        Order order = new Order(items);
         
-        OrderDB.getInstance().addOrder(orderChoice.get(choice));
+        System.out.println("That'll cost you " + order.getCost() + " euro");
+        
+        OrderDB.getInstance().addOrder(order);
     }
     
     @Override

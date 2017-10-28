@@ -48,9 +48,9 @@ public class ProfileDB {
         return result;
     }
     
-    public ArrayList<Order> getMenuFromCafe(Cafe cafe) throws IOException
+    public ArrayList<MenuItem> getMenuFromCafe(Cafe cafe) throws IOException
     {
-        ArrayList<Order> result = new ArrayList<Order>();
+        ArrayList<MenuItem> result = new ArrayList<MenuItem>();
         String filepath = "C:\\Users\\Jack\\Desktop\\UML-Project-CS4125\\CS4125CodeBase\\src\\Resources\\Profiles\\Cafe\\Menus.txt";
         BufferedReader reader = new BufferedReader(new FileReader(filepath));
         String line;
@@ -65,7 +65,7 @@ public class ProfileDB {
                     String [] orderDetails = line.split(",");
                     String name = orderDetails[0];
                     Float cost = Float.parseFloat(orderDetails[1]);
-                    result.add(new Order(cafe, name, cost));
+                    result.add(new MenuItem(cafe, name, cost));
                 }
             }
         }

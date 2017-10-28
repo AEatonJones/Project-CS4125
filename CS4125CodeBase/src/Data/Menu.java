@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 public class Menu {
     Cafe cafe;
-    ArrayList<Order> choices;
+    ArrayList<MenuItem> choices;
     
-    public Menu(Cafe cafe, ArrayList<Order> choices)
+    public Menu(Cafe cafe, ArrayList<MenuItem> choices)
     {
         this.cafe = cafe;
         this.choices = choices;
     }
     
-    public ArrayList<Order> getChoices()
+    public ArrayList<MenuItem> getChoices()
     {
         return choices;
     }
