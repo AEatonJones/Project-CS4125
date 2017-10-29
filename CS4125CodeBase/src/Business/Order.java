@@ -24,4 +24,8 @@ public class Order {
         return cost;
     }
     
+    public Cafe getCafe()
+    {
+        return menuItems[0].getCafe();
+    }
 }

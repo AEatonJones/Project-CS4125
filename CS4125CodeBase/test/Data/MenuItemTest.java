@@ -1,25 +1,33 @@
 package Data;
 
 import Business.Profiles.Cafe;
-import java.io.IOException;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 public class MenuItemTest {
 
+    Cafe cafe;
+    MenuItem item;
+    
+    @Before
+    public void init()
+    {
+        try{
+            cafe = new Cafe("Cafe great", "101 avenue", 10, "", "");
+            item = new MenuItem(cafe, "Scone",10.0f);
+        }catch(Exception e){
+            fail("Should not throw an Exception");
+        }
+    }
     
     @Test
-    public void testGetCost() {
-        Cafe cafe;
-        try
-        {
-            cafe = new Cafe("Cafe great", "101 avenue", 10, "", "");
-            MenuItem item = new MenuItem(cafe, "Scone",10.0f);
-            assertEquals(10.0f, item.getCost(), 0.0f);
-        } 
-        catch (IOException ex)
-        {
-            fail("Should not have thrown IOException");
-        }
-    }   
+    public void getCostTest() {
+        assertEquals("Cafe great", item.getCafe().getName());
+    } 
+    
+    @Test
+    public void getCafeTest(){
+        assertEquals("Cafe great", item.getCafe().getName());
+    }
 }

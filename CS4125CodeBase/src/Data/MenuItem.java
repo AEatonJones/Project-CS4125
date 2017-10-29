@@ -4,8 +4,8 @@ import Business.Profiles.Cafe;
 
 public class MenuItem 
 {
-    Cafe cafe;
-    String name;
+    private Cafe cafe;
+    private String name;
     private float cost;
     
     public MenuItem(Cafe cafe, String name, float cost){
@@ -16,5 +16,9 @@ public class MenuItem
     
     public float getCost(){
         return this.cost;
+    }
+    
+    public Cafe getCafe(){
+        return this.cafe;
     }
 }
