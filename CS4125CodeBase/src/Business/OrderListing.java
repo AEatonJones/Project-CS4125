@@ -4,27 +4,34 @@ import java.util.ArrayList;
 
 public class OrderListing implements Listing<Order>{
 
-    private ArrayList<Order> orderList = new ArrayList<Order>();
+    private ArrayList<Order> waiting = new ArrayList<Order>();
+    private ArrayList<Order> ready = new ArrayList<Order>();
     
-    public int getLength()
+    public int amountWaiting()
     {
-        return orderList.size();
+        return waiting.size();
+    }
+    
+    public int amountReady()
+    {
+        return ready.size();
     }
     
     @Override
     public void sortListing(){
-        orderList.sort(null);
+        waiting.sort(null);
     }
 
     @Override
     public void push(Order listItem){
-        orderList.add(listItem);
+        waiting.add(listItem);
         sortListing();
     }
 
     @Override
-    public Order grab(int index)
+    public void pick(Order listItem)
     {
-        return orderList.remove(index);
+        waiting.remove(listItem);
+        ready.add(listItem);
     } 
 }

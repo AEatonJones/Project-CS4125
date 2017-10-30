@@ -21,14 +21,15 @@ public class OrderListingUnitTest{
     }
     
     @Test
-    public void pushAndPopTest(){
-        assertEquals(0, listing.getLength());
+    public void pushAndPickTest(){
+        assertEquals(0, listing.amountWaiting());
         
         listing.push(order);
-        assertEquals(1, listing.getLength());
+        assertEquals(1, listing.amountWaiting());
         
-        assertEquals(order, listing.grab(0));
-        assertEquals(0, listing.getLength());
+        listing.pick(order);
+        assertEquals(0, listing.amountWaiting());
+        assertEquals(1, listing.amountReady());
     }
     
 }
