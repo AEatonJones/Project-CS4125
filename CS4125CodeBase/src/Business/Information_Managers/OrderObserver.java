@@ -1,6 +1,6 @@
 package Business.Information_Managers;
 
-import Business.Order;
+import Business.Orders.Order;
 import Data.OrderDB;
 
 public interface OrderObserver{

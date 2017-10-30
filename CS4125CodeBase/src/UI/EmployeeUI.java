@@ -2,7 +2,7 @@ package UI;
 
 import Business.OrderListing;
 import Business.Information_Managers.OrderObserver;
-import Business.Order;
+import Business.Orders.Order;
 import java.util.ArrayList;
 import java.util.Scanner;
 

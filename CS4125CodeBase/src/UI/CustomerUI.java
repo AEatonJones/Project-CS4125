@@ -1,6 +1,7 @@
 package UI;
 
-import Business.Order;
+import Business.Orders.Order;
+import Business.Orders.ToGo;
 import Business.Profiles.Cafe;
 import Data.*;
 import java.util.*;
@@ -33,7 +34,7 @@ public class CustomerUI implements UI{
             items[itemCount] = orderChoice.get(Integer.parseInt(choiceArray[itemCount]));
         }
         
-        Order order = new Order(items);
+        Order order = new ToGo(items);
         
         System.out.println("That'll cost you " + order.getCost() + " euro");
         

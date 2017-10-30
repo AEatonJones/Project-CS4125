@@ -1,6 +1,6 @@
 package Data;
 
-import Business.Order;
+import Business.Orders.Order;
 import Business.Profiles.Cafe;
 import java.util.ArrayList;
 
