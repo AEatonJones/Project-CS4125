@@ -18,6 +18,10 @@ public class MenuItem
         return this.cost;
     }
     
+    public String getName(){
+        return this.name;
+    }
+    
     public Cafe getCafe(){
         return this.cafe;
     }

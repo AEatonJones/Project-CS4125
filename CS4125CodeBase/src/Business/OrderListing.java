@@ -17,6 +17,14 @@ public class OrderListing implements Listing<Order>{
         return ready.size();
     }
     
+    public ArrayList<Order> getWaitingOrders(){
+        return waiting;
+    }
+    
+    public ArrayList<Order> getReadyOrders(){
+        return waiting;
+    }
+    
     @Override
     public void sortListing(){
         waiting.sort(null);

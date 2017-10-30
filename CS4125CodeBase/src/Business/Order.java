@@ -51,4 +51,14 @@ public class Order implements Comparable<Order>{
         
         return result;
     }
+    
+    @Override
+    public String toString(){
+        String result = getCafe().getName();
+        
+        for(MenuItem item : menuItems)
+            result += item.getName() + ", " + item.getCost();
+        
+        return result;
+    }
 }

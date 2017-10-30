@@ -14,7 +14,7 @@ public class CustomerUI implements UI{
     {
         this.cafe = cafe;
         orderChoice = cafe.getMenu().getChoices();
-        promptUser();
+        draw();
     }
     
     private void promptUser()
@@ -43,7 +43,7 @@ public class CustomerUI implements UI{
     @Override
     public void draw()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        promptUser();
     }
     
     

@@ -1,11 +1,11 @@
-package UseCases.useCase1;
+package UseCases.UI;
 
 import Business.Profiles.Cafe;
 import Data.ProfileDB;
 import UI.CustomerUI;
 import java.io.IOException;
 
-public class useCase1 
+public class Customer 
 {
     public static void main(String [] args) throws IOException
     {
