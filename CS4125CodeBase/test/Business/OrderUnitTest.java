@@ -11,7 +11,8 @@ public class OrderUnitTest
 {
     Cafe cafe;
     MenuItem[] items;
-    Order order;
+    Order order1;
+    Order order2;
     
     @Before
     public void init()
@@ -24,7 +25,8 @@ public class OrderUnitTest
             items[1] = new MenuItem(cafe, "tea", 15.0f);
             items[2] = new MenuItem(cafe, "fruit", 20.0f);
             
-            order = new Order(items);
+            order1 = new Order(items);
+            order2 = new Order(items);
             
         }catch(Exception e){
             fail("Should not have thrown an exception");
@@ -33,12 +35,17 @@ public class OrderUnitTest
     
     @Test
     public void getCostTest(){
-        assertEquals(10.0f + 15.0f + 20.0f, order.getCost(), 0.0f);
+        assertEquals(10.0f + 15.0f + 20.0f, order1.getCost(), 0.0f);
     }
     
     @Test
     public void getCafeTest(){
-        assertEquals("Cafe great", order.getCafe().getName());
+        assertEquals("Cafe great", order1.getCafe().getName());
+    }
+    
+    @Test
+    public void compareToTest(){
+        assertEquals(0, order1.compareTo(order2));
     }
     
 }
