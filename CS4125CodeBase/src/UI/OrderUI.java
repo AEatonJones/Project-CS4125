@@ -1,7 +1,7 @@
 package UI;
 
 import Business.Information_Managers.OrderObserver;
-import Business.Order;
+import Business.Orders.Order;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;

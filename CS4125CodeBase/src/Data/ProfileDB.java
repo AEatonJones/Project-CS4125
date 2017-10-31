@@ -1,6 +1,6 @@
 package Data;
 
-import Business.Order;
+import Business.Orders.Order;
 import Business.Profiles.Cafe;
 import java.util.ArrayList;
 import java.io.*;
@@ -65,7 +65,7 @@ public class ProfileDB {
                     String [] orderDetails = line.split(",");
                     String name = orderDetails[0];
                     Float cost = Float.parseFloat(orderDetails[1]);
-                    result.add(new MenuItem(cafe, name, cost));
+                    result.add(new MenuItem(cafe, name, cost, 1));
                 }
             }
         }

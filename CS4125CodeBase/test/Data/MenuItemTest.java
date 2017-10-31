@@ -15,7 +15,7 @@ public class MenuItemTest {
     {
         try{
             cafe = new Cafe("Cafe great", "101 avenue", 10, "", "");
-            item = new MenuItem(cafe, "Scone",10.0f);
+            item = new MenuItem(cafe, "Scone",10.0f, 4);
         }catch(Exception e){
             fail("Should not throw an Exception");
         }
@@ -29,5 +29,10 @@ public class MenuItemTest {
     @Test
     public void getCafeTest(){
         assertEquals("Cafe great", item.getCafe().getName());
+    }
+    
+    @Test
+    public void getETFTest(){
+        assertEquals(4, item.getEtf());
     }
 }

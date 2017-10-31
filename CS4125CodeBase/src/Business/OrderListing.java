@@ -1,5 +1,6 @@
 package Business;
 
+import Business.Orders.Order;
 import java.util.ArrayList;
 
 public class OrderListing implements Listing<Order>{
