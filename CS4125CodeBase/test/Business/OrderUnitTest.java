@@ -20,8 +20,7 @@ public class OrderUnitTest
     Order orderToStay;
     
     @Before
-    public void init()
-    {
+    public void init() {
         try{
             cafe = new Cafe("Cafe great", "101 avenue", 10, "", "");
 
