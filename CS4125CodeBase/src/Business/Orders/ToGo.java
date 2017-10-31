@@ -1,5 +1,4 @@
 package Business.Orders;
-import Business.Profiles.Cafe;
 import Data.MenuItem;
 
 public class ToGo extends Order{
