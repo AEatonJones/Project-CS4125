@@ -16,7 +16,8 @@ public class OrderListingUnitTest{
     public void init(){
         item = new MenuItem(null, "Water", 5.0f);
         items = new MenuItem[]{item};
-        order = new Order(items);
+        String paymentType = "COA";
+        order = new Order(items,paymentType);
         listing = new OrderListing();
     }
     

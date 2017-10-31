@@ -10,6 +10,7 @@ public class Cafe extends Profile {
     private String address;
     private int employeeCount;
     private Menu cafeMenu;
+    private double balance;
     
     public Cafe(String name, String address, int employeeCount, String email, String number) throws IOException {
         super(email,number);
@@ -17,6 +18,7 @@ public class Cafe extends Profile {
         this.address = address;
         this.employeeCount = employeeCount;
         this.cafeMenu = new Menu(this,ProfileDB.getInstance().getMenuFromCafe(this));
+        this.balance = 0;
     }
     
     public String getName()

@@ -25,11 +25,14 @@ public class OrderUnitTest
             items[1] = new MenuItem(cafe, "tea", 15.0f);
             items[2] = new MenuItem(cafe, "fruit", 20.0f);
             
-            order1 = new Order(items);
-            order2 = new Order(items);
+            String paymentType = "CC";
+            
+            order1 = new Order(items,paymentType);
+            order2 = new Order(items,paymentType);
             
         }catch(Exception e){
             fail("Should not have thrown an exception");
+            e.printStackTrace();
         }
     }
     

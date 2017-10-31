@@ -2,6 +2,7 @@ package UI;
 
 import Business.Order;
 import Business.Profiles.Cafe;
+import Business.Information_Managers.PaymentControl;
 import Data.*;
 import java.util.*;
 
@@ -33,9 +34,12 @@ public class CustomerUI implements UI{
             items[itemCount] = orderChoice.get(Integer.parseInt(choiceArray[itemCount]));
         }
         
-        Order order = new Order(items);
+        String paymentType = PaymentControl.getType();
+        PaymentControl.validatePayment(paymentType);
+        Order order = new Order(items,paymentType);
         
         System.out.println("That'll cost you " + order.getCost() + " euro");
+        
         
         OrderDB.getInstance().addOrder(order);
     }
