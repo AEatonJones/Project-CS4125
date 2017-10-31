@@ -28,20 +28,14 @@ public class OrderUnitTest
             items[0] = new MenuItem(cafe, "coffee", 10.0f, 2);
             items[1] = new MenuItem(cafe, "tea", 15.0f, 1);
             items[2] = new MenuItem(cafe, "fruit", 20.0f, 0);
-            
-            orderToGo  = new ToGo(items);
-            
-<<<<<<< HEAD
             String paymentType = "CC";
             
-            order1 = new Order(items,paymentType);
-            order2 = new Order(items,paymentType);
-=======
->>>>>>> origin/Code-base
+            orderToGo = new ToGo(items,paymentType);
+            orderToStay = new ToGo(items,paymentType);
             
         }catch(Exception e){
-            fail("Should not have thrown an exception");
             e.printStackTrace();
+            fail("Should not have thrown an exception");
         }
     }
     

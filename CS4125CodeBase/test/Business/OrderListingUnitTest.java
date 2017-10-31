@@ -1,6 +1,7 @@
 package Business;
 
 import Business.Orders.Order;
+import Business.Orders.ToGo;
 import Data.MenuItem;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -15,10 +16,10 @@ public class OrderListingUnitTest{
     
     @Before
     public void init(){
-        item = new MenuItem(null, "Water", 5.0f);
+        item = new MenuItem(null, "Water", 5.0f,1);
         items = new MenuItem[]{item};
         String paymentType = "COA";
-        order = new Order(items,paymentType);
+        order = new ToGo(items,paymentType);
         listing = new OrderListing();
     }
     
