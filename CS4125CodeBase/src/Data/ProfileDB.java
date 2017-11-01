@@ -23,7 +23,7 @@ public class ProfileDB {
     public Cafe getCafeByDetails(String name, String address) throws IOException
     {
         Cafe result = null;
-        String filepath = "C:\\Workarea\\Project-CS4125\\CS4125CodeBase\\src\\Resources\\Profiles\\Cafe\\Cafes.txt";
+        String filepath = ".\\src\\Resources\\Profiles\\Cafe\\Cafes.txt";
         BufferedReader reader = new BufferedReader(new FileReader(filepath));
         String line;
         boolean found = false;
@@ -51,7 +51,7 @@ public class ProfileDB {
     public ArrayList<MenuItem> getMenuFromCafe(Cafe cafe) throws IOException
     {
         ArrayList<MenuItem> result = new ArrayList<MenuItem>();
-        String filepath = "C:\\Workarea\\Project-CS4125\\CS4125CodeBase\\src\\Resources\\Profiles\\Cafe\\Menus.txt";
+        String filepath = ".\\src\\Resources\\Profiles\\Cafe\\Menus.txt";
         BufferedReader reader = new BufferedReader(new FileReader(filepath));
         String line;
         boolean found = false;

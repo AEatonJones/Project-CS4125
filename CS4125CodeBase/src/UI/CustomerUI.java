@@ -40,6 +40,7 @@ public class CustomerUI implements UI{
         PaymentControl.validatePayment(paymentType);
         Order order = new ToGo(items,paymentType);
         
+        
         System.out.println("That'll cost you " + order.getCost() + " euro");
         
         

@@ -21,13 +21,19 @@ public class Cafe extends Profile {
         this.balance = 0;
     }
     
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
        
-    public Menu getMenu()
-    {
+    public Menu getMenu() {
         return cafeMenu;
+    }
+    
+    public double getBalance() {
+        return balance;
+    }
+    
+    public void setBalance(double cost) {
+        
     }
 }
