@@ -15,7 +15,7 @@ public class CustomerMenuUI implements UI, ActionListener  {
 
     
     JFrame frame;
-    JButton order,rpo,quit;
+    JButton order,rpo,quit, signOut;
 
     @Override
     public void draw() {
@@ -46,6 +46,10 @@ public class CustomerMenuUI implements UI, ActionListener  {
         rpo.addActionListener(this);
         buttons.add(rpo, bag);
         
+        signOut = new JButton("SIGN OUT");
+        signOut.addActionListener(this);
+        buttons.add(signOut, bag);
+        
         quit = new JButton("QUIT");
         quit.addActionListener(this);
         buttons.add(quit, bag);
@@ -65,6 +69,10 @@ public class CustomerMenuUI implements UI, ActionListener  {
         else if(pressed.equals(rpo)) {
             this.frame.dispose();
            // new ReviewPastOrder().draw();
+        }
+        else if(pressed.equals(signOut)) {
+            this.frame.dispose();
+            new CustomerLoginUI();
         }
         else
             System.exit(0);
