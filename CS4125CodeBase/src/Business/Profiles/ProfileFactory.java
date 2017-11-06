@@ -1,13 +1,15 @@
 package Business.Profiles;
 
+import UI.CustomerUI;
 import java.io.IOException;
 
 public class ProfileFactory 
 {
-    public static Profile createProfile(String type) throws IOException{
+    
+    public static Profile createProfile(String type,String[] array) throws IOException{
         Profile profile = null;
         switch(type){
-            case "Customer":profile = createCustomer();break;
+            case "Customer":profile = createCustomer(array);break;
             case "Employee":profile = createEmployee();break;
             case "Manager": profile = createManager();break;
             case "Cafe":    profile = createCafe();break;
@@ -18,14 +20,16 @@ public class ProfileFactory
     }
     
     //public Customer(String firstname, String surname, String email, String password,String number,String type)
-    private static Profile createCustomer(){
+    private static Profile createCustomer(String[] array){
         Profile profile = null;
         
         String firstname = null, surname = null, email = null, password = null, number = null;
 
-        //Prompt to add info via UI
+        String [] customerDetails = new String[5];
+        System.out.println("Begun creating profile");
         
-        profile = new Customer(firstname, surname, email, password, number);
+        profile = new Customer(firstname = array[0], surname = array[1], email = array[2], password = array[3], number = array[4]);
+        System.out.println("Finished creating profile");
         return profile;
     }
     
