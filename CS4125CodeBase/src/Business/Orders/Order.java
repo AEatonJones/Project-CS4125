@@ -44,15 +44,7 @@ public abstract class Order implements Comparable<Order>{
         return paymentType;
     }
     
-    @Override
-    public String toString(){
-        String result = getCafe().getName();
-        
-        for(MenuItem item : items)
-            result += item.getName() + ", " + item.getCost();
-        
-        return result;
-    }
+    public abstract String getDetails();
     
     @Override
     public int compareTo(Order o){

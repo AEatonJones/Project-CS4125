@@ -59,4 +59,9 @@ public class OrderUnitTest
         assertEquals(0, orderToGo.compareTo(orderToGo));
     }
     
+    
+    @Test
+    public void getDetailsTest(){
+        assertEquals("Cafe great, coffee, tea, fruit, 46.0", orderToGo.getDetails());
+    }
 }

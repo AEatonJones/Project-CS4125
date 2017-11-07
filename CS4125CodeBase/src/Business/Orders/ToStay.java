@@ -10,4 +10,16 @@ public class ToStay extends Order{
         this.baseEtf = 0;
         this.paymentType = paymentType;
     }
+    
+    @Override
+    public String getDetails(){
+        String result = getCafe().getName() + ", ";
+        System.out.println(items == null);
+        for(MenuItem item : items)
+            result += item.getName() + ", ";
+        
+        result += getCost();
+        
+        return result;
+    }
 }

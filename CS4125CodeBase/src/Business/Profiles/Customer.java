@@ -11,4 +11,9 @@ public class Customer extends Profile {
        this.password = password;
        
     }
+    
+    public String getName()
+    {
+        return this.firstname;
+    }
 }

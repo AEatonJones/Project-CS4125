@@ -66,8 +66,7 @@ public class OrderDB implements Database<Order>, Subject{
         File file = new File(".\\src\\Resources\\Orders\\Orders.txt");
         
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-        
-        writer.append(data.toString());
+        writer.append(data.getDetails());
         
         writer.close();
 

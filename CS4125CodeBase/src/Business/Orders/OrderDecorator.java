@@ -35,4 +35,14 @@ public class OrderDecorator extends Order{
         return component.compareTo(o);
     }
 
+    @Override
+    public String getDetails()
+    {
+        String result = getCafe().getName() + ", ";
+        System.out.println(items == null);
+        
+        result += getCost();
+        
+        return result;}
+
 }
