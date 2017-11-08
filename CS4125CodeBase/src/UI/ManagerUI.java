@@ -22,6 +22,10 @@ public class ManagerUI implements UI {
     public void draw()
     {
         window = new JFrame("Manager UI");
+        window.setSize(350, 230);
+        window.setResizable(false);
+        window.setLocationRelativeTo(null);
+        window.setDefaultCloseOperation(window.EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
         Cafe cafe = null;
         try
@@ -74,6 +78,10 @@ public class ManagerUI implements UI {
         public void draw()
         {
             window = new JFrame();
+            window.setSize(350, 230);
+            window.setResizable(false);
+            window.setLocationRelativeTo(null);
+            window.setDefaultCloseOperation(window.EXIT_ON_CLOSE);
             window.setLayout(new BorderLayout());
             
             JPanel buttons = new JPanel();

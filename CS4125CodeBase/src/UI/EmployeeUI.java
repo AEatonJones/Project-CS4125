@@ -35,7 +35,8 @@ public class EmployeeUI implements UI, OrderObserver, ActionListener{
     @Override
     public void draw(){
         window = new JFrame("Employee window");
-        window.setSize(200, 100);
+        window.setSize(350, 230);
+        window.setResizable(false);
         window.setLocationRelativeTo(null);
         window.setDefaultCloseOperation(window.EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());

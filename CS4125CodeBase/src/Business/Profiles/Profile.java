@@ -9,6 +9,12 @@ public abstract class Profile {
         this.email = email;
         this.number = number;
     }
-
+    
+    public String getEmail() {
+        return this.email;
+    }
+    public String getNumber() {
+        return this.number;
+    }
 }
 

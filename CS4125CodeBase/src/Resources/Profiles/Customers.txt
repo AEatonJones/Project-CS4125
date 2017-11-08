@@ -1,0 +1,5 @@
+Henry,Maughan,henry@ul.ie,henry123,0851126789,
+Aaron,Jones,aaron@ul.ie,aaron123,0851139716,
+Jack,Coffey,jack@ul.ie,jack123,12345,
+conor,reale,conor@ul.ie,conor123,12345,
+patrick,cruz,patrick@ul.ie,patrick123,12345,

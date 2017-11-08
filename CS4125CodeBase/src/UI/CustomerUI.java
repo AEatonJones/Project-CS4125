@@ -1,5 +1,7 @@
 package UI;
 
+import Business.Information_Managers.ProfileControl;
+import Business.Profiles.Customer;
 import Business.Profiles.Profile;
 import Business.Profiles.ProfileFactory;
 import Data.*;
@@ -133,9 +135,22 @@ class CustomerSignIn implements UI,ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton pressed = (JButton)e.getSource();
         
+        String potentialEmail = email.getText();
+        String potentialPassword = password.getText();
+        
         if(pressed.equals(signIn)) {
-            new CustomerMenuUI().draw();
-            this.window.dispose();
+            try {
+                Profile currentProfile = ProfileControl.verifyProfile(potentialEmail,potentialPassword);
+                if(currentProfile != null) {
+                    new CustomerMenuUI().initilizeProfile(currentProfile);
+                    this.window.dispose();
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,"Invalid Information given!");
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(CustomerSignIn.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         else if(pressed.equals(goBack)){
@@ -203,6 +218,7 @@ class CustomerRegister implements UI,ActionListener {
         
         
         if(pressed.equals(register)) {
+
             
             String[] customerDetails = new String[5];
             customerDetails[0] = firstname.getText();
@@ -212,7 +228,8 @@ class CustomerRegister implements UI,ActionListener {
             customerDetails[4] = number.getText();
 
             try {
-                Profile profile = ProfileFactory.createProfile("Customer",customerDetails);
+                Profile profile = ProfileFactory.createProfile("Customer", customerDetails);
+                ProfileControl.printToFile(customerDetails);
             } catch (IOException ex) {
                 Logger.getLogger(CustomerRegister.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -236,6 +253,12 @@ class CustomerRegister implements UI,ActionListener {
 class CustomerMenuUI implements UI, ActionListener  {
         JFrame frame;
         JButton order, viewProfile, quit, signOut;
+        Profile profile;
+        
+        public void initilizeProfile(Profile currentProfile) {
+            profile = currentProfile;
+            draw();
+        }
 
         @Override
         public void draw() {
@@ -287,8 +310,8 @@ class CustomerMenuUI implements UI, ActionListener  {
                // new PlaceOrder().draw();
             }
             else if(pressed.equals(viewProfile)) {
+                new ViewProfile().initilizeProfile(profile);
                 this.frame.dispose();
-                new ViewProfile().draw();
             }
             else if(pressed.equals(signOut)) {
                 this.frame.dispose();
@@ -297,6 +320,7 @@ class CustomerMenuUI implements UI, ActionListener  {
             else
                 System.exit(0);
         }
+
     }
 
 
@@ -317,10 +341,15 @@ class ViewProfile implements UI,ActionListener {
         JFrame window;
         JLabel firstname, surname, password, email, number;
         JButton pastOrders, goBack;
+        Customer currentProfile;
+        
+        public void initilizeProfile(Profile profile) {
+            currentProfile = (Customer) profile;
+            draw();
+        }
 
         @Override
         public void draw() {       
-
         window = new JFrame("Account Info");
         window.setSize(350, 230);
         window.setResizable(false);
@@ -333,19 +362,19 @@ class ViewProfile implements UI,ActionListener {
         input.setLayout(new GridLayout(5, 2));
 
         input.add(new JLabel("First name:"));
-        input.add((firstname = new JLabel()));
+        input.add((firstname = new JLabel(currentProfile.getFirstName())));
 
         input.add(new JLabel("Surname:"));
-        input.add((surname = new JLabel()));
+        input.add((surname = new JLabel(currentProfile.getSurname())));
 
         input.add(new JLabel("Password:"));
-        input.add((password = new JLabel()));
+        input.add((password = new JLabel(currentProfile.getPassword())));
 
         input.add(new JLabel("Email address:"));
-        input.add((email = new JLabel()));
+        input.add((email = new JLabel(currentProfile.getEmail())));
 
         input.add(new JLabel("Number:"));
-        input.add((number = new JLabel()));
+        input.add((number = new JLabel(currentProfile.getNumber())));
 
         window.add("Center", input);
 
@@ -353,7 +382,7 @@ class ViewProfile implements UI,ActionListener {
         JPanel buttons = new JPanel();
         buttons.setLayout(new FlowLayout());
 
-        pastOrders = new JButton("Past Orders");
+        pastOrders = new JButton("Last Order");
         pastOrders.addActionListener(this);
         buttons.add(pastOrders);
 
@@ -370,13 +399,12 @@ class ViewProfile implements UI,ActionListener {
         JButton pressed = (JButton)e.getSource();
 
         if(pressed.equals(pastOrders)) {
-
+           //Gives last order made
         }
 
-        else if(pressed.equals(goBack))
-        {
-            new CustomerMenuUI().draw();
+        else if(pressed.equals(goBack)) {
+            new CustomerMenuUI().initilizeProfile(currentProfile);
             this.window.dispose();
+            }
         }
-    }
     }
