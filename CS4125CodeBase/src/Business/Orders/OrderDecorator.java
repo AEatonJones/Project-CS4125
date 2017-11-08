@@ -39,7 +39,6 @@ public class OrderDecorator extends Order{
     public String getDetails()
     {
         String result = getCafe().getName() + ", ";
-        System.out.println(items == null);
         
         result += getCost();
         

@@ -12,8 +12,11 @@ public class Customer extends Profile {
        
     }
     
-    public String getName()
-    {
+    public String getFirstName(){
         return this.firstname;
+    }
+    
+    public String getSurname(){
+        return this.surname;
     }
 }

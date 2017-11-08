@@ -26,8 +26,7 @@ public class OrderDB implements Database<Order>, Subject{
         return instance;
     }
     
-    public void addOrder(Order order)
-    {
+    public void addOrder(Order order){
         try
         {
             writeToFile(order);
@@ -39,9 +38,12 @@ public class OrderDB implements Database<Order>, Subject{
         }
     }
     
+    public void pickOrder(Order order){
+        notifyObservers(order, "REMOVE");
+    }
+    
     @Override
-    public void attachObserver(OrderObserver observer)
-    {
+    public void attachObserver(OrderObserver observer){
         observers.add(observer);
     }
 

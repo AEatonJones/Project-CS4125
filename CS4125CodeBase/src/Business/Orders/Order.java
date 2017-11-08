@@ -58,4 +58,9 @@ public abstract class Order implements Comparable<Order>{
         
         return result;
     }
+    
+    @Override
+    public String toString(){
+        return this.getDetails();
+    }
 }

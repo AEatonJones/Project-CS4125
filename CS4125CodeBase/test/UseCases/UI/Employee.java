@@ -24,7 +24,21 @@ public class Employee
         EmployeeUI eUI = new EmployeeUI(employee);
         OrderDB.getInstance().attachObserver(eUI);
         
-        new AddOrderWindow().draw();
+        Cafe waffe;
+        Order order = null;
+        try
+        {
+            waffe = ProfileDB.getInstance().getCafeByDetails("Cafe Waffe", "110 Main Street");
+        
+            Data.MenuItem[] items = {new Data.MenuItem(waffe, "Scone", 3.0f, 1)};
+            order = new SmallOrder(new ToGo(items, "CC"));
+        }catch(IOException io){
+            System.exit(1);
+        }
+        
+        eUI.addOrder(order);
+        
+        //new AddOrderWindow().draw();
         eUI.draw();
     }
 }
@@ -33,8 +47,7 @@ class AddOrderWindow implements UI.UI{
     @Override
     public void draw(){
         JFrame window = new JFrame("Add Order");
-        window.setSize(200, 100);
-        window.setLocationRelativeTo(null);
+        window.setSize(200, 75);
         window.setLayout(new FlowLayout());
         
         JButton addNewOrder = new JButton("Add Order");
@@ -48,6 +61,7 @@ class AddOrderWindow implements UI.UI{
             }
         });
         
+        JButton pickNewOrder = new JButton("Pick Order");
         window.add(addNewOrder);
         
         window.setVisible(true);
