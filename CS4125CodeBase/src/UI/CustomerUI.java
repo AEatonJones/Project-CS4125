@@ -305,8 +305,8 @@ class PlaceOrder implements UI,ActionListener {
     JFrame window;
     JComboBox<Cafe> cafe;
     Cafe currentCafe;
+    DefaultListModel choicesListModel;
     JList orderItems;
-    ArrayList<JComboBox<Data.MenuItem>> items;
     JComboBox<String> size, location;
     JButton newItem, place, back;
     
@@ -319,11 +319,18 @@ class PlaceOrder implements UI,ActionListener {
         cafe = new JComboBox<Cafe>();
         try{
             cafe.addItem(ProfileDB.getInstance().getCafeByDetails("Cafe Waffe", "110 Main Street"));
+        
+            currentCafe = cafe.getItemAt(cafe.getSelectedIndex());
+            window.add(cafe);
+            
+            choicesListModel = new DefaultListModel();
+            addNewItem();
+            orderItems = new JList(choicesListModel);
+            
+            window.add(orderItems);
         } catch (IOException ex){
             closeWindow();
         }
-        currentCafe = cafe.getItemAt(cafe.getSelectedIndex());
-        window.add(cafe);
         
         window.setVisible(true);
     }
@@ -334,9 +341,14 @@ class PlaceOrder implements UI,ActionListener {
         new CustomerMenuUI();
     }
     
-    private void addNewItem()
+    private void addNewItem() throws IOException
     {
+        ArrayList<Data.MenuItem> choices = ProfileDB.getInstance().getMenuFromCafe(currentCafe);
+        JComboBox<Data.MenuItem> choiceBox = new JComboBox<Data.MenuItem>();
+        for(Data.MenuItem item : choices)
+            choiceBox.addItem(item);
         
+        choicesListModel.addElement(choiceBox);
     }
     
     @Override
@@ -345,7 +357,13 @@ class PlaceOrder implements UI,ActionListener {
         
         if(pressed.equals(newItem))
         {
-            addNewItem();
+            try
+            {
+                addNewItem();
+            } catch (IOException ex)
+            {
+                //Pop-up error message
+            }
         }
         
         if(pressed.equals(place))
@@ -357,6 +375,21 @@ class PlaceOrder implements UI,ActionListener {
         {
             closeWindow();
         }
+    }
+}
+
+class MenuItemPopup implements UI, ActionListener {
+
+    @Override
+    public void draw()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        
     }
 }
 
