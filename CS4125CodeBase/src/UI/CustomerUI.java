@@ -1,5 +1,6 @@
 package UI;
 
+import Business.Profiles.Cafe;
 import Business.Profiles.Profile;
 import Business.Profiles.ProfileFactory;
 import Data.*;
@@ -234,84 +235,130 @@ class CustomerRegister implements UI,ActionListener {
 }
     
 class CustomerMenuUI implements UI, ActionListener  {
-        JFrame frame;
-        JButton order, viewProfile, quit, signOut;
+    JFrame frame;
+    JButton order, viewProfile, quit, signOut;
 
-        @Override
-        public void draw() {
-            frame = new JFrame("Menu");
-            frame.setLocationRelativeTo(null);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(300, 200);
-            frame.setLayout(new GridLayout(1, 1));
+    @Override
+    public void draw() {
+        frame = new JFrame("Menu");
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 200);
+        frame.setLayout(new GridLayout(1, 1));
 
-            //GridBagConstraints code found at https://stackoverflow.com/questions/29813566/how-do-i-create-spacing-in-between-jbuttons-with-gridbaglayout
-            GridBagConstraints bag = new GridBagConstraints();
-            bag.weightx = 1;
-            bag.weighty = 1;
-            bag.insets = new Insets(5, 0, 5, 0);
-            bag.gridwidth = GridBagConstraints.REMAINDER;
-            bag.fill = GridBagConstraints.BOTH;
+        //GridBagConstraints code found at https://stackoverflow.com/questions/29813566/how-do-i-create-spacing-in-between-jbuttons-with-gridbaglayout
+        GridBagConstraints bag = new GridBagConstraints();
+        bag.weightx = 1;
+        bag.weighty = 1;
+        bag.insets = new Insets(5, 0, 5, 0);
+        bag.gridwidth = GridBagConstraints.REMAINDER;
+        bag.fill = GridBagConstraints.BOTH;
 
-            //BorderFactory code found at https://stackoverflow.com/questions/14117481/how-can-i-set-the-insets-of-a-jframe
-            JPanel buttons = new JPanel();
-            buttons.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
-            buttons.setLayout(new GridBagLayout());
+        //BorderFactory code found at https://stackoverflow.com/questions/14117481/how-can-i-set-the-insets-of-a-jframe
+        JPanel buttons = new JPanel();
+        buttons.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
+        buttons.setLayout(new GridBagLayout());
 
-            order = new JButton("ORDER");
-            order.addActionListener(this);
-            buttons.add(order, bag);
+        order = new JButton("ORDER");
+        order.addActionListener(this);
+        buttons.add(order, bag);
 
-            viewProfile = new JButton("VIEW PROFILE");
-            viewProfile.addActionListener(this);
-            buttons.add(viewProfile, bag);
+        viewProfile = new JButton("VIEW PROFILE");
+        viewProfile.addActionListener(this);
+        buttons.add(viewProfile, bag);
 
-            signOut = new JButton("SIGN OUT");
-            signOut.addActionListener(this);
-            buttons.add(signOut, bag);
+        signOut = new JButton("SIGN OUT");
+        signOut.addActionListener(this);
+        buttons.add(signOut, bag);
 
-            quit = new JButton("QUIT");
-            quit.addActionListener(this);
-            buttons.add(quit, bag);
+        quit = new JButton("QUIT");
+        quit.addActionListener(this);
+        buttons.add(quit, bag);
 
-            frame.add(buttons);
+        frame.add(buttons);
 
-            frame.setVisible(true);
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            JButton pressed = (JButton) e.getSource();
-
-            if(pressed.equals(order)) {
-               // new PlaceOrder().draw();
-            }
-            else if(pressed.equals(viewProfile)) {
-                this.frame.dispose();
-                new ViewProfile().draw();
-            }
-            else if(pressed.equals(signOut)) {
-                this.frame.dispose();
-                new CustomerLoginUI().draw();
-            }
-            else
-                System.exit(0);
-        }
+        frame.setVisible(true);
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton pressed = (JButton) e.getSource();
+
+        if(pressed.equals(order)) {
+           new PlaceOrder().draw();
+        }
+        else if(pressed.equals(viewProfile)) {
+            this.frame.dispose();
+            new ViewProfile().draw();
+        }
+        else if(pressed.equals(signOut)) {
+            this.frame.dispose();
+            new CustomerLoginUI().draw();
+        }
+        else
+            System.exit(0);
+    }
+}
 
 
 class PlaceOrder implements UI,ActionListener {
-
-        @Override
-        public void draw() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    JFrame window;
+    JComboBox<Cafe> cafe;
+    Cafe currentCafe;
+    JList orderItems;
+    ArrayList<JComboBox<Data.MenuItem>> items;
+    JComboBox<String> size, location;
+    JButton newItem, place, back;
+    
+    @Override
+    public void draw() {
+        window = new JFrame("Place an Order");
+        window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.PAGE_AXIS));
+        window.setLocationRelativeTo(null);
+        
+        cafe = new JComboBox<Cafe>();
+        try{
+            cafe.addItem(ProfileDB.getInstance().getCafeByDetails("Cafe Waffe", "110 Main Street"));
+        } catch (IOException ex){
+            closeWindow();
         }
+        currentCafe = cafe.getItemAt(cafe.getSelectedIndex());
+        window.add(cafe);
+        
+        window.setVisible(true);
+    }
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void closeWindow()
+    {
+        window.dispose();
+        new CustomerMenuUI();
+    }
+    
+    private void addNewItem()
+    {
+        
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton pressed = (JButton)e.getSource();
+        
+        if(pressed.equals(newItem))
+        {
+            addNewItem();
+        }
+        
+        if(pressed.equals(place))
+        {
+            
+        }
+        
+        else if(pressed.equals(back))
+        {
+            closeWindow();
         }
     }
+}
 
 class ViewProfile implements UI,ActionListener {
         JFrame window;
