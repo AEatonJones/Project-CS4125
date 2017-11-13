@@ -305,15 +305,16 @@ class PlaceOrder implements UI,ActionListener {
     JFrame window;
     JComboBox<Cafe> cafe;
     Cafe currentCafe;
-    DefaultListModel choicesListModel;
+    JComboBox<Data.MenuItem> choices;
+    DefaultListModel orderListModel;
     JList orderItems;
     JComboBox<String> size, location;
-    JButton newItem, place, back;
+    JButton addItem, place, back;
     
     @Override
     public void draw() {
         window = new JFrame("Place an Order");
-        window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.PAGE_AXIS));
+        window.setLayout(new BorderLayout());
         window.setLocationRelativeTo(null);
         
         cafe = new JComboBox<Cafe>();
@@ -321,13 +322,30 @@ class PlaceOrder implements UI,ActionListener {
             cafe.addItem(ProfileDB.getInstance().getCafeByDetails("Cafe Waffe", "110 Main Street"));
         
             currentCafe = cafe.getItemAt(cafe.getSelectedIndex());
-            window.add(cafe);
+            window.add("North", cafe);
             
-            choicesListModel = new DefaultListModel();
-            addNewItem();
-            orderItems = new JList(choicesListModel);
+            JPanel choicesPanel = new JPanel();
+            choicesPanel.setLayout(new BoxLayout(choicesPanel, BoxLayout.PAGE_AXIS));
             
-            window.add(orderItems);
+            JScrollPane scrollPane = new JScrollPane();
+            orderListModel = new DefaultListModel();
+            orderItems = new JList(orderListModel);
+            scrollPane.setViewportView(orderItems);
+            
+            choicesPanel.add(orderItems);
+            
+            choices = new JComboBox<Data.MenuItem>();
+            ArrayList<Data.MenuItem> menuItems = ProfileDB.getInstance().getMenuFromCafe(currentCafe);
+            for(Data.MenuItem item : menuItems){
+                choices.addItem(item);
+            }
+            choicesPanel.add(choices);
+            
+            addItem = new JButton("Add Item");
+            addItem.addActionListener(this);
+            choicesPanel.add(addItem);
+            
+            window.add("Center", choicesPanel);
         } catch (IOException ex){
             closeWindow();
         }
@@ -348,48 +366,24 @@ class PlaceOrder implements UI,ActionListener {
         for(Data.MenuItem item : choices)
             choiceBox.addItem(item);
         
-        choicesListModel.addElement(choiceBox);
+        orderListModel.addElement(choiceBox);
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton pressed = (JButton)e.getSource();
         
-        if(pressed.equals(newItem))
-        {
-            try
-            {
-                addNewItem();
-            } catch (IOException ex)
-            {
-                //Pop-up error message
-            }
+        if(pressed.equals(addItem)){
+            orderListModel.addElement(choices.getSelectedItem());
         }
         
-        if(pressed.equals(place))
-        {
+        if(pressed.equals(place)){
             
         }
         
-        else if(pressed.equals(back))
-        {
+        else if(pressed.equals(back)){
             closeWindow();
         }
-    }
-}
-
-class MenuItemPopup implements UI, ActionListener {
-
-    @Override
-    public void draw()
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e)
-    {
-        
     }
 }
 

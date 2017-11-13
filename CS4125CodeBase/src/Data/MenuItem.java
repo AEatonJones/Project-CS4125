@@ -32,4 +32,9 @@ public class MenuItem
     {
         return this.etf;
     }
+    
+    @Override
+    public String toString(){
+        return name + " : \u20AC" + String.format("%.2f", cost);
+    }
 }
