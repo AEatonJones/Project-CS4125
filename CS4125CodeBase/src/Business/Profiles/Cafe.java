@@ -36,4 +36,9 @@ public class Cafe extends Profile {
     public void setBalance(double cost) {
         
     }
+    
+    @Override
+    public String toString(){
+        return name;
+    }
 }

@@ -1,5 +1,6 @@
 package UI;
 
+import Business.Orders.Order;
 import Business.Profiles.Cafe;
 import Business.Profiles.Profile;
 import Business.Profiles.ProfileFactory;
@@ -346,6 +347,17 @@ class PlaceOrder implements UI,ActionListener {
             choicesPanel.add(addItem);
             
             window.add("Center", choicesPanel);
+            
+            JPanel buttons = new JPanel();
+            buttons.setLayout(new FlowLayout());
+            
+            place = new JButton("Place Order");
+            place.addActionListener(this);
+            buttons.add(place);
+            
+            back = new JButton("Go Back");
+            back.addActionListener(this);
+            buttons.add(back);
         } catch (IOException ex){
             closeWindow();
         }
@@ -378,7 +390,40 @@ class PlaceOrder implements UI,ActionListener {
         }
         
         if(pressed.equals(place)){
+            Order order;
+            String decoration, location;
+            //Possible use for Java Reflection
+            if(decoration.equals("small")){
+                if(location.equals("To Go")){
+                    
+                }
+                
+                else if(location.equals("To Stay")){
+                    
+                }
+            }
             
+            else if(decoration.equals("medium")){
+                if(location.equals("To Go")){
+                    
+                }
+                
+                else if(location.equals("To Stay")){
+                    
+                }
+            }
+            
+            else if(decoration.equals("large")){
+                if(location.equals("To Go")){
+                    
+                }
+                
+                else if(location.equals("To Stay")){
+                    
+                }
+            }
+            
+            OrderDB.getInstance().addOrder(order);
         }
         
         else if(pressed.equals(back)){
