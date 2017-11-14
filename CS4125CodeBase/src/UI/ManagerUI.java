@@ -127,13 +127,48 @@ public class ManagerUI implements UI {
         
         
         class EmployeeList implements UI{
+            JFrame window;
+            Cafe currentCafe;
+            JList listOfEmployees;
+            DefaultListModel orderListModel;
+            JButton back;
 
             @Override
             public void draw()
             {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                window = new JFrame("List of Employees");
+                window.setLayout(new BorderLayout());
+                window.setLocationRelativeTo(null);
+                
+                JPanel employeePanel = new JPanel();
+                employeePanel.setLayout(new BoxLayout(employeePanel, BoxLayout.PAGE_AXIS));
+                
+                
+                
+                JScrollPane scrollPane = new JScrollPane();
+                orderListModel = new DefaultListModel();
+                listOfEmployees = new JList(orderListModel);
+                scrollPane.setViewportView(listOfEmployees);
+                orderListModel.addElement();
+                
+                employeePanel.add(listOfEmployees);
+                
+                back = new JButton("Back");
+                back.addActionListener((ActionListener) this);
+                employeePanel.add(back);
+                
+            }
+            
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                JButton pressed = (JButton)e.getSource();
+                if(pressed.equals(back)){
+                    new ManagerModeUI().draw();
+                    this.window.dispose();
+                }
             }
             
         }
     }
+
 }
