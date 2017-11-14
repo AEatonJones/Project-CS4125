@@ -52,6 +52,7 @@ public class ProfileControl {
         
         return result;
     }
+    //cunt
     
     public static void printToFile(String[] profile) throws IOException {
         String filepath = ".\\src\\Resources\\Profiles\\Customers.txt";
