@@ -1,1 +1,1 @@
-Cafe Waffe, 6.25
+waffe, 5.25

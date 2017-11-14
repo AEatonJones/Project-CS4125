@@ -18,7 +18,7 @@ public class Employee
     static Cafe waffe;
         
     public static void main(String [] args) throws IOException{
-        waffe = ProfileDB.getInstance().getCafeByDetails("Cafe Waffe", "110 Main Street");
+        waffe = ProfileDB.getInstance().getCafeByDetails("waffe", "110 Main Street");
         Business.Profiles.Employee employee = new Business.Profiles.Employee("Johnny", "Harpe", "", "", "", waffe);
         
         EmployeeUI eUI = new EmployeeUI(employee);
@@ -36,9 +36,9 @@ public class Employee
             System.exit(1);
         }
         
-        eUI.addOrder(order);
+        //eUI.addOrder(order);
         
-        //new AddOrderWindow().draw();
+        new AddOrderWindow().draw();
         eUI.draw();
     }
 }
