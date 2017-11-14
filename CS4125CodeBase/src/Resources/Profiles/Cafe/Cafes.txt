@@ -1,1 +1,1 @@
-Cafe Waffe,110 Main Street,8,Cafe@Waffe.com,055555555
+waffe,110 Main Street,8,Cafe@Waffe.com,055555555

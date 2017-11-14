@@ -13,4 +13,12 @@ public class Employee extends Customer {
         this.cafe = cafe;
         this.id = ProfileControl.assignID(cafe);
     }
+    
+    public Cafe getCafe() {
+        return cafe;
+    }
+    
+    public int getID() {
+        return id;
+    }
 }

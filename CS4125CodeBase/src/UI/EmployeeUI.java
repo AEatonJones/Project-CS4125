@@ -49,35 +49,35 @@ public class EmployeeUI implements UI, OrderObserver, ActionListener{
         
         orderLists.add("North", new JLabel("Prepare Queue"));
         waitingListModel = new DefaultListModel<Order>();
-        /*for(Order wOrder : orders.getWaitingOrders())
+        for(Order wOrder : orders.getWaitingOrders())
         {
             waitingListModel.addElement(wOrder);
-        }*/
+        }
         Cafe waffe;
         try
         {
-            waffe = ProfileDB.getInstance().getCafeByDetails("Cafe Waffe", "110 Main Street");
+            waffe = ProfileDB.getInstance().getCafeByDetails("waffe", "110 Main Street");
         
             Data.MenuItem[] items = {new Data.MenuItem(waffe, "Scone", 3.0f, 1)};
             Order order = new SmallOrder(new ToGo(items, "CC"));
             waitingListModel.addElement(order);
             waiting = new JList<Order>(waitingListModel);
-            //waiting.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+            waiting.setLayoutOrientation(JList.HORIZONTAL_WRAP);
             JScrollPane waitingScroll = new JScrollPane();
             waitingScroll.getViewport().setView(waiting);
             orderLists.add(waiting, BorderLayout.EAST);
 
             orderLists.add(new JLabel("Ready Queue"));
             readyListModel = new DefaultListModel<Order>();
-            /*for(Order rOrder : orders.getReadyOrders())
+            for(Order rOrder : orders.getReadyOrders())
             {
                 readyListModel.addElement(rOrder);
-            }*/
+            }
             Data.MenuItem[] itemsR = {new Data.MenuItem(waffe, "Water", 1.5f, 1)};
             Order orderR = new SmallOrder(new ToGo(items, "CC"));
             readyListModel.addElement(order);
             ready = new JList<Order>(readyListModel);
-            //ready.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+            ready.setLayoutOrientation(JList.HORIZONTAL_WRAP);
             JScrollPane readyScroll = new JScrollPane();
             readyScroll.getViewport().setView(ready);
             orderLists.add(ready, BorderLayout.WEST);

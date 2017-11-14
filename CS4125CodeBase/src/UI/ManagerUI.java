@@ -1,5 +1,6 @@
 package UI;
 
+import Business.Information_Managers.ProfileControl;
 import Business.Profiles.Cafe;
 import Business.Profiles.Manager;
 import Business.Profiles.ProfileFactory;
@@ -12,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import UI.UI;
+import java.util.ArrayList;
 
 public class ManagerUI implements UI {
     //String firstname, String surname, String email, String password, String number, Cafe cafe
@@ -36,12 +38,11 @@ public class ManagerUI implements UI {
             Logger.getLogger(ManagerUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         manager = new Manager("Harry", "Fredrick", "HF@Boss", "ppp", "555444968", cafe);//this line needs to be changed
-        
         JLabel title = new JLabel("Welcome to the Manager UI, Manager " + manager.getSurname());
         window.add("North", title);
         
         JPanel buttons = new JPanel();
-        buttons.setLayout(new GridLayout(3,1));
+        buttons.setLayout(new GridLayout(2,1));
         
         JButton employeeMode = new JButton("Employee Mode");
         employeeMode.addActionListener(new ActionListener() {
@@ -60,7 +61,7 @@ public class ManagerUI implements UI {
             public void actionPerformed(ActionEvent e)
             {
                 window.dispose();
-                new ManagerModeUI().draw();
+                new ManagerModeUI().initilizeProfile(manager);
             }
         });
         buttons.add(managerMode);
@@ -70,9 +71,16 @@ public class ManagerUI implements UI {
         window.setVisible(true);
     }
     
-    class ManagerModeUI implements UI{
+class ManagerModeUI implements UI{
 
         JFrame window;
+        
+        Manager currentManager = null;
+        
+        public void initilizeProfile(Manager manager) {
+            currentManager = manager;
+            draw();
+        }
         
         @Override
         public void draw()
@@ -85,15 +93,15 @@ public class ManagerUI implements UI {
             window.setLayout(new BorderLayout());
             
             JPanel buttons = new JPanel();
-            buttons.setLayout(new GridLayout(3,1));
+            buttons.setLayout(new GridLayout(4,1));
             
-            JButton employeeList = new JButton("Employee List");
+            JButton employeeList = new JButton("Cafe Employee List");
             employeeList.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
                     window.dispose();
-                    new EmployeeList().draw();
+                    new EmployeeList().initilizeProfile(currentManager);
                 }
             });
             buttons.add(employeeList);
@@ -126,48 +134,63 @@ public class ManagerUI implements UI {
         
         
         
-        class EmployeeList implements UI{
-            JFrame window;
-            Cafe currentCafe;
-            JList listOfEmployees;
-            DefaultListModel orderListModel;
-            JButton back;
+class EmployeeList implements UI,ActionListener{
+        JFrame window;
+        JList listOfEmployees;
+        DefaultListModel orderListModel;
+        JButton back;
+        Manager currentManager = null;
+        
+        public void initilizeProfile(Manager manager) {
+            currentManager = manager;
+            draw();
+        }
 
-            @Override
-            public void draw()
-            {
-                window = new JFrame("List of Employees");
-                window.setLayout(new BorderLayout());
-                window.setLocationRelativeTo(null);
+        @Override
+        public void draw()
+        {
+            window = new JFrame("List of Cafe Employees");
+            window.setLayout(new BorderLayout());
+            window.setSize(350, 230);
+            window.setResizable(false);
+            window.setLocationRelativeTo(null);
+            window.setDefaultCloseOperation(window.EXIT_ON_CLOSE);
+
+            JPanel employeePanel = new JPanel();
+            employeePanel.setLayout(new BoxLayout(employeePanel, BoxLayout.PAGE_AXIS));
+            JScrollPane scrollPane = new JScrollPane();
+            orderListModel = new DefaultListModel();
+            listOfEmployees = new JList(orderListModel);
+            scrollPane.setViewportView(listOfEmployees);
+            String cafeName = currentManager.getCafe().getName();
+            ArrayList<String> employee = null;
+            try {
+                    employee = ProfileControl.obtainEmployeeInfo(cafeName);
                 
-                JPanel employeePanel = new JPanel();
-                employeePanel.setLayout(new BoxLayout(employeePanel, BoxLayout.PAGE_AXIS));
-                
-                
-                
-                JScrollPane scrollPane = new JScrollPane();
-                orderListModel = new DefaultListModel();
-                listOfEmployees = new JList(orderListModel);
-                scrollPane.setViewportView(listOfEmployees);
-                orderListModel.addElement();
-                
-                employeePanel.add(listOfEmployees);
-                
-                back = new JButton("Back");
-                back.addActionListener((ActionListener) this);
-                employeePanel.add(back);
-                
+            } catch (IOException ex) {
+                Logger.getLogger(ManagerUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                JButton pressed = (JButton)e.getSource();
-                if(pressed.equals(back)){
-                    new ManagerModeUI().draw();
-                    this.window.dispose();
+            for(int i = 0; i < employee.size() ;i++ ){
+                orderListModel.addElement(employee.get(i));
+            }
+
+            employeePanel.add(listOfEmployees);
+
+            back = new JButton("Back");
+            back.addActionListener(this);
+            employeePanel.add(back);
+            window.add(employeePanel);
+            window.setVisible(true);
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            JButton pressed = (JButton)e.getSource();
+            if(pressed.equals(back)){
+                new ManagerModeUI().draw();
+                this.window.dispose();
                 }
             }
-            
+
         }
     }
 
