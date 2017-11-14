@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.logging.Level;
@@ -394,6 +395,8 @@ class PlaceOrder implements UI,ActionListener {
             back = new JButton("Go Back");
             back.addActionListener(this);
             controls.add(back);
+            
+            window.add("South", controls);
         } catch (IOException ex){
             closeWindow();
         }
@@ -416,8 +419,10 @@ class PlaceOrder implements UI,ActionListener {
         }
         
         if(pressed.equals(place)){
-            Order order;
-            Data.MenuItem[] items = (Data.MenuItem[])orderListModel.toArray();
+            Order concreteOrder, decoratedOrder = null;
+            Data.MenuItem[] items = new Data.MenuItem[orderListModel.size()];
+            for(int itemCount = 0; itemCount < items.length; itemCount++)
+                items[itemCount] = (Data.MenuItem)orderListModel.get(itemCount);
             
             String decoration = size.getItemAt(size.getSelectedIndex()) + "Order";
             String concrete = location.getItemAt(location.getSelectedIndex()).replace(" ", "");
@@ -425,49 +430,25 @@ class PlaceOrder implements UI,ActionListener {
             
             Constructor concreteConstructor = null;
             try{
+                concreteConstructor = Class.forName("Business.Orders." + concrete).getConstructor(Data.MenuItem[].class, String.class);
+                concreteOrder = (Order)concreteConstructor.newInstance((Object[]) items, "CC");
+
+                Constructor decoratorConstructor = Class.forName("Business.Orders." + decoration).getConstructor(Order.class);
+                decoratedOrder = (Order)decoratorConstructor.newInstance(concreteOrder);
                 
-            }catch(Exception e){
-                
+            }catch(ClassNotFoundException | NoSuchMethodException | SecurityException ex){
+                ex.printStackTrace();
+            }catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex){
+                ex.printStackTrace();
             }
             
-            Constructor decoratorConstructor = null;
-            try{
-                decoratorConstructor = Class.forName(decoration).getConstructor(parameterTypes);
-            }catch(Exception e){
-                
+            if(decoratedOrder != null){
+                OrderDB.getInstance().addOrder(decoratedOrder);
+                System.out.println("Order placed");
             }
-            
-            if(decoration.equals("small")){
-                if(location.equals("To Go")){
-                    
-                }
-                
-                else if(location.equals("To Stay")){
-                    
-                }
-            }
-            
-            else if(decoration.equals("medium")){
-                if(location.equals("To Go")){
-                    
-                }
-                
-                else if(location.equals("To Stay")){
-                    
-                }
-            }
-            
-            else if(decoration.equals("large")){
-                if(location.equals("To Go")){
-                    
-                }
-                
-                else if(location.equals("To Stay")){
-                    //hey
-                }
-            }
-            
-            OrderDB.getInstance().addOrder(order);
+             
+            else
+                System.out.println("Order not placed");
         }
         
         else if(pressed.equals(back)){
