@@ -1,7 +1,12 @@
 package UI;
 
+<<<<<<< HEAD
 import Business.Information_Managers.ProfileControl;
 import Business.Profiles.Customer;
+=======
+import Business.Orders.Order;
+import Business.Profiles.Cafe;
+>>>>>>> origin/Code-base
 import Business.Profiles.Profile;
 import Business.Profiles.ProfileFactory;
 import Data.*;
@@ -9,6 +14,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -251,6 +258,7 @@ class CustomerRegister implements UI,ActionListener {
 }
     
 class CustomerMenuUI implements UI, ActionListener  {
+<<<<<<< HEAD
         JFrame frame;
         JButton order, viewProfile, quit, signOut;
         Profile profile;
@@ -259,53 +267,28 @@ class CustomerMenuUI implements UI, ActionListener  {
             profile = currentProfile;
             draw();
         }
+=======
+    JFrame frame;
+    JButton order, viewProfile, quit, signOut;
+>>>>>>> origin/Code-base
 
-        @Override
-        public void draw() {
-            frame = new JFrame("Menu");
-            frame.setLocationRelativeTo(null);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(300, 200);
-            frame.setLayout(new GridLayout(1, 1));
+    @Override
+    public void draw() {
+        frame = new JFrame("Menu");
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 200);
+        frame.setLayout(new GridLayout(1, 1));
 
-            //GridBagConstraints code found at https://stackoverflow.com/questions/29813566/how-do-i-create-spacing-in-between-jbuttons-with-gridbaglayout
-            GridBagConstraints bag = new GridBagConstraints();
-            bag.weightx = 1;
-            bag.weighty = 1;
-            bag.insets = new Insets(5, 0, 5, 0);
-            bag.gridwidth = GridBagConstraints.REMAINDER;
-            bag.fill = GridBagConstraints.BOTH;
+        //GridBagConstraints code found at https://stackoverflow.com/questions/29813566/how-do-i-create-spacing-in-between-jbuttons-with-gridbaglayout
+        GridBagConstraints bag = new GridBagConstraints();
+        bag.weightx = 1;
+        bag.weighty = 1;
+        bag.insets = new Insets(5, 0, 5, 0);
+        bag.gridwidth = GridBagConstraints.REMAINDER;
+        bag.fill = GridBagConstraints.BOTH;
 
-            //BorderFactory code found at https://stackoverflow.com/questions/14117481/how-can-i-set-the-insets-of-a-jframe
-            JPanel buttons = new JPanel();
-            buttons.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
-            buttons.setLayout(new GridBagLayout());
-
-            order = new JButton("ORDER");
-            order.addActionListener(this);
-            buttons.add(order, bag);
-
-            viewProfile = new JButton("VIEW PROFILE");
-            viewProfile.addActionListener(this);
-            buttons.add(viewProfile, bag);
-
-            signOut = new JButton("SIGN OUT");
-            signOut.addActionListener(this);
-            buttons.add(signOut, bag);
-
-            quit = new JButton("QUIT");
-            quit.addActionListener(this);
-            buttons.add(quit, bag);
-
-            frame.add(buttons);
-
-            frame.setVisible(true);
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            JButton pressed = (JButton) e.getSource();
-
+<<<<<<< HEAD
             if(pressed.equals(order)) {
                // new PlaceOrder().draw();
             }
@@ -321,21 +304,203 @@ class CustomerMenuUI implements UI, ActionListener  {
                 System.exit(0);
         }
 
+=======
+        //BorderFactory code found at https://stackoverflow.com/questions/14117481/how-can-i-set-the-insets-of-a-jframe
+        JPanel buttons = new JPanel();
+        buttons.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
+        buttons.setLayout(new GridBagLayout());
+
+        order = new JButton("ORDER");
+        order.addActionListener(this);
+        buttons.add(order, bag);
+
+        viewProfile = new JButton("VIEW PROFILE");
+        viewProfile.addActionListener(this);
+        buttons.add(viewProfile, bag);
+
+        signOut = new JButton("SIGN OUT");
+        signOut.addActionListener(this);
+        buttons.add(signOut, bag);
+
+        quit = new JButton("QUIT");
+        quit.addActionListener(this);
+        buttons.add(quit, bag);
+
+        frame.add(buttons);
+
+        frame.setVisible(true);
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton pressed = (JButton) e.getSource();
+
+        if(pressed.equals(order)) {
+           new PlaceOrder().draw();
+        }
+        else if(pressed.equals(viewProfile)) {
+            this.frame.dispose();
+            new ViewProfile().draw();
+        }
+        else if(pressed.equals(signOut)) {
+            this.frame.dispose();
+            new CustomerLoginUI().draw();
+        }
+        else
+            System.exit(0);
+>>>>>>> origin/Code-base
+    }
+}
 
 
 class PlaceOrder implements UI,ActionListener {
-
-        @Override
-        public void draw() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    JFrame window;
+    JComboBox<Cafe> cafe;
+    Cafe currentCafe;
+    JComboBox<Data.MenuItem> choices;
+    DefaultListModel orderListModel;
+    JList orderItems;
+    JComboBox<String> size, location;
+    JButton addItem, place, back;
+    
+    @Override
+    public void draw() {
+        window = new JFrame("Place an Order");
+        window.setLayout(new BorderLayout());
+        window.setLocationRelativeTo(null);
+        
+        cafe = new JComboBox<Cafe>();
+        try{
+            cafe.addItem(ProfileDB.getInstance().getCafeByDetails("Cafe Waffe", "110 Main Street"));
+        
+            currentCafe = cafe.getItemAt(cafe.getSelectedIndex());
+            window.add("North", cafe);
+            
+            JPanel choicesPanel = new JPanel();
+            choicesPanel.setLayout(new BoxLayout(choicesPanel, BoxLayout.PAGE_AXIS));
+            
+            JScrollPane scrollPane = new JScrollPane();
+            orderListModel = new DefaultListModel();
+            orderItems = new JList(orderListModel);
+            scrollPane.setViewportView(orderItems);
+            
+            choicesPanel.add(orderItems);
+            
+            choices = new JComboBox<Data.MenuItem>();
+            ArrayList<Data.MenuItem> menuItems = ProfileDB.getInstance().getMenuFromCafe(currentCafe);
+            for(Data.MenuItem item : menuItems){
+                choices.addItem(item);
+            }
+            choicesPanel.add(choices);
+            
+            addItem = new JButton("Add Item");
+            addItem.addActionListener(this);
+            choicesPanel.add(addItem);
+            
+            window.add("Center", choicesPanel);
+            
+            JPanel controls = new JPanel();
+            controls.setLayout(new GridLayout(2, 2));
+            
+            size = new JComboBox<String>();
+            size.addItem("Small");
+            size.addItem("Medium");
+            size.addItem("Large");
+            controls.add(size);
+            
+            location = new JComboBox<String>();
+            location.addItem("To Stay");
+            location.addItem("To Go");
+            controls.add(location);
+            
+            place = new JButton("Place Order");
+            place.addActionListener(this);
+            controls.add(place);
+            
+            back = new JButton("Go Back");
+            back.addActionListener(this);
+            controls.add(back);
+        } catch (IOException ex){
+            closeWindow();
         }
+        
+        window.setVisible(true);
+    }
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void closeWindow()
+    {
+        window.dispose();
+        new CustomerMenuUI();
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton pressed = (JButton)e.getSource();
+        
+        if(pressed.equals(addItem)){
+            orderListModel.addElement(choices.getSelectedItem());
+        }
+        
+        if(pressed.equals(place)){
+            Order order;
+            Data.MenuItem[] items = (Data.MenuItem[])orderListModel.toArray();
+            
+            String decoration = size.getItemAt(size.getSelectedIndex()) + "Order";
+            String concrete = location.getItemAt(location.getSelectedIndex()).replace(" ", "");
+            //Possible use for Java Reflection
+            
+            Constructor concreteConstructor = null;
+            try{
+                
+            }catch(Exception e){
+                
+            }
+            
+            Constructor decoratorConstructor = null;
+            try{
+                decoratorConstructor = Class.forName(decoration).getConstructor(parameterTypes);
+            }catch(Exception e){
+                
+            }
+            
+            if(decoration.equals("small")){
+                if(location.equals("To Go")){
+                    
+                }
+                
+                else if(location.equals("To Stay")){
+                    
+                }
+            }
+            
+            else if(decoration.equals("medium")){
+                if(location.equals("To Go")){
+                    
+                }
+                
+                else if(location.equals("To Stay")){
+                    
+                }
+            }
+            
+            else if(decoration.equals("large")){
+                if(location.equals("To Go")){
+                    
+                }
+                
+                else if(location.equals("To Stay")){
+                    
+                }
+            }
+            
+            OrderDB.getInstance().addOrder(order);
+        }
+        
+        else if(pressed.equals(back)){
+            closeWindow();
         }
     }
+}
 
 class ViewProfile implements UI,ActionListener {
         JFrame window;

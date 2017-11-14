@@ -35,7 +35,7 @@ public class ManagerUI implements UI {
         {
             Logger.getLogger(ManagerUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        manager = new Manager("Harry", "Fredrick", "HF@Boss", "ppp", "555444968", cafe);
+        manager = new Manager("Harry", "Fredrick", "HF@Boss", "ppp", "555444968", cafe);//this line needs to be changed
         
         JLabel title = new JLabel("Welcome to the Manager UI, Manager " + manager.getSurname());
         window.add("North", title);
