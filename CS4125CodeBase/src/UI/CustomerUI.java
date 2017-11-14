@@ -9,6 +9,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -348,16 +350,27 @@ class PlaceOrder implements UI,ActionListener {
             
             window.add("Center", choicesPanel);
             
-            JPanel buttons = new JPanel();
-            buttons.setLayout(new FlowLayout());
+            JPanel controls = new JPanel();
+            controls.setLayout(new GridLayout(2, 2));
+            
+            size = new JComboBox<String>();
+            size.addItem("Small");
+            size.addItem("Medium");
+            size.addItem("Large");
+            controls.add(size);
+            
+            location = new JComboBox<String>();
+            location.addItem("To Stay");
+            location.addItem("To Go");
+            controls.add(location);
             
             place = new JButton("Place Order");
             place.addActionListener(this);
-            buttons.add(place);
+            controls.add(place);
             
             back = new JButton("Go Back");
             back.addActionListener(this);
-            buttons.add(back);
+            controls.add(back);
         } catch (IOException ex){
             closeWindow();
         }
@@ -371,16 +384,6 @@ class PlaceOrder implements UI,ActionListener {
         new CustomerMenuUI();
     }
     
-    private void addNewItem() throws IOException
-    {
-        ArrayList<Data.MenuItem> choices = ProfileDB.getInstance().getMenuFromCafe(currentCafe);
-        JComboBox<Data.MenuItem> choiceBox = new JComboBox<Data.MenuItem>();
-        for(Data.MenuItem item : choices)
-            choiceBox.addItem(item);
-        
-        orderListModel.addElement(choiceBox);
-    }
-    
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton pressed = (JButton)e.getSource();
@@ -391,8 +394,26 @@ class PlaceOrder implements UI,ActionListener {
         
         if(pressed.equals(place)){
             Order order;
-            String decoration, location;
+            Data.MenuItem[] items = (Data.MenuItem[])orderListModel.toArray();
+            
+            String decoration = size.getItemAt(size.getSelectedIndex()) + "Order";
+            String concrete = location.getItemAt(location.getSelectedIndex()).replace(" ", "");
             //Possible use for Java Reflection
+            
+            Constructor concreteConstructor = null;
+            try{
+                
+            }catch(Exception e){
+                
+            }
+            
+            Constructor decoratorConstructor = null;
+            try{
+                decoratorConstructor = Class.forName(decoration).getConstructor(parameterTypes);
+            }catch(Exception e){
+                
+            }
+            
             if(decoration.equals("small")){
                 if(location.equals("To Go")){
                     
