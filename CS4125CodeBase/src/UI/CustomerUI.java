@@ -1,12 +1,9 @@
 package UI;
 
-<<<<<<< HEAD
 import Business.Information_Managers.ProfileControl;
 import Business.Profiles.Customer;
-=======
 import Business.Orders.Order;
 import Business.Profiles.Cafe;
->>>>>>> origin/Code-base
 import Business.Profiles.Profile;
 import Business.Profiles.ProfileFactory;
 import Data.*;
@@ -258,7 +255,6 @@ class CustomerRegister implements UI,ActionListener {
 }
     
 class CustomerMenuUI implements UI, ActionListener  {
-<<<<<<< HEAD
         JFrame frame;
         JButton order, viewProfile, quit, signOut;
         Profile profile;
@@ -267,11 +263,7 @@ class CustomerMenuUI implements UI, ActionListener  {
             profile = currentProfile;
             draw();
         }
-=======
-    JFrame frame;
-    JButton order, viewProfile, quit, signOut;
->>>>>>> origin/Code-base
-
+        
     @Override
     public void draw() {
         frame = new JFrame("Menu");
@@ -288,23 +280,6 @@ class CustomerMenuUI implements UI, ActionListener  {
         bag.gridwidth = GridBagConstraints.REMAINDER;
         bag.fill = GridBagConstraints.BOTH;
 
-<<<<<<< HEAD
-            if(pressed.equals(order)) {
-               // new PlaceOrder().draw();
-            }
-            else if(pressed.equals(viewProfile)) {
-                new ViewProfile().initilizeProfile(profile);
-                this.frame.dispose();
-            }
-            else if(pressed.equals(signOut)) {
-                this.frame.dispose();
-                new CustomerLoginUI().draw();
-            }
-            else
-                System.exit(0);
-        }
-
-=======
         //BorderFactory code found at https://stackoverflow.com/questions/14117481/how-can-i-set-the-insets-of-a-jframe
         JPanel buttons = new JPanel();
         buttons.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
@@ -348,7 +323,6 @@ class CustomerMenuUI implements UI, ActionListener  {
         }
         else
             System.exit(0);
->>>>>>> origin/Code-base
     }
 }
 
@@ -489,7 +463,7 @@ class PlaceOrder implements UI,ActionListener {
                 }
                 
                 else if(location.equals("To Stay")){
-                    
+                    //hey
                 }
             }
             
