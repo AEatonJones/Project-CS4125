@@ -145,7 +145,7 @@ class CustomerSignIn implements UI,ActionListener {
         
         if(pressed.equals(signIn)) {
             try {
-                Profile currentProfile = ProfileControl.verifyProfile(potentialEmail,potentialPassword);
+                Profile currentProfile = ProfileControl.verifyProfile(potentialEmail,potentialPassword,1);
                 if(currentProfile != null) {
                     new CustomerMenuUI().initilizeProfile(currentProfile);
                     this.window.dispose();
@@ -234,7 +234,7 @@ class CustomerRegister implements UI,ActionListener {
 
             try {
                 Profile profile = ProfileFactory.createProfile("Customer", customerDetails);
-                ProfileControl.printToFile(customerDetails);
+                ProfileControl.printToFile(customerDetails,1);
             } catch (IOException ex) {
                 Logger.getLogger(CustomerRegister.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -346,7 +346,7 @@ class PlaceOrder implements UI,ActionListener {
         
         cafe = new JComboBox<Cafe>();
         try{
-            cafe.addItem(ProfileDB.getInstance().getCafeByDetails("Cafe Waffe", "110 Main Street"));
+            cafe.addItem(ProfileDB.getInstance().getCafeByDetails("waffe", "110 Main Street"));
         
             currentCafe = cafe.getItemAt(cafe.getSelectedIndex());
             window.add("North", cafe);

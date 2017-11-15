@@ -21,14 +21,13 @@ public class Employee
         waffe = ProfileDB.getInstance().getCafeByDetails("waffe", "110 Main Street");
         Business.Profiles.Employee employee = new Business.Profiles.Employee("Johnny", "Harpe", "", "", "", waffe);
         
-        EmployeeUI eUI = new EmployeeUI(employee);
-        OrderDB.getInstance().attachObserver(eUI);
+        EmployeeUI eUI = new EmployeeUI();
         
         Cafe waffe;
         Order order = null;
         try
         {
-            waffe = ProfileDB.getInstance().getCafeByDetails("Cafe Waffe", "110 Main Street");
+            waffe = ProfileDB.getInstance().getCafeByDetails("waffe", "110 Main Street");
         
             Data.MenuItem[] items = {new Data.MenuItem(waffe, "Scone", 3.0f, 1)};
             order = new SmallOrder(new ToGo(items, "CC"));

@@ -24,6 +24,10 @@ public class Cafe extends Profile {
     public String getName() {
         return name;
     }
+    
+    public String getAddress() {
+        return address;
+    }
        
     public Menu getMenu() {
         return cafeMenu;

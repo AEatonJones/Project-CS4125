@@ -1,0 +1,4 @@
+Aaron,Jones,aaron@ul.ie,aaron123,086578123,waffe,
+Eva,Maughan,eva@ul.ie,eva123,0861124567,waffe,
+Jake,Craven,jake@ul.ie,jake123,098755682,waffe,
+William,Turner,william@ul.ie,william123,12345,waffe,
