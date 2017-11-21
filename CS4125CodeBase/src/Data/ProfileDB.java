@@ -20,6 +20,9 @@ public class ProfileDB {
         return instance;
     }
     
+    /**
+     * Gets the details of the cafe which was selected from the text file.
+     */
     public Cafe getCafeByDetails(String name, String address) throws IOException
     {
         Cafe result = null;
@@ -48,6 +51,9 @@ public class ProfileDB {
         return result;
     }
     
+    /**
+     * Gets the menu from the cafe which was selected and returns it.
+     */
     public ArrayList<MenuItem> getMenuFromCafe(Cafe cafe) throws IOException
     {
         ArrayList<MenuItem> result = new ArrayList<MenuItem>();

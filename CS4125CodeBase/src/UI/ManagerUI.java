@@ -68,6 +68,9 @@ public class ManagerUI implements UI,ActionListener {
         window.setVisible(true);
     }
 
+    /**
+     * Triggers when button is pressed.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton pressed = (JButton)e.getSource();
@@ -101,11 +104,17 @@ class ManagerSelectMode implements UI {
     Manager manager = null;
     JFrame window;
     
+    /**
+     * Constructor which gets the variable manager.
+     */
     ManagerSelectMode(Manager manager) {
         this.manager = manager;
         draw();
     }
     
+    /**
+     * Sets up manager GUI.
+     */
     @Override
     public void draw()
     {
@@ -167,11 +176,17 @@ class ManagerModeUI implements UI{
         
         Manager currentManager = null;
         
+        /**
+         *  Constructor which sets currentManager to manager.
+         */
         public void initilizeProfile(Manager manager) {
             currentManager = manager;
             draw();
         }
         
+        /**
+        * Sets up manager menu GUI
+        */
         @Override
         public void draw()
         {
@@ -240,11 +255,17 @@ class EmployeeCreation implements UI,ActionListener {
     JButton register, goBack;
     Manager manager;
     
+    /**
+     * Constructor which sets manager to manager.
+     */
     public EmployeeCreation(Manager manager) {
         this.manager = manager;
         draw();
     }
     
+    /**
+     * Sets up GUI.
+     */
     @Override
     public void draw() {
         window = new JFrame("Register Employee Account");
@@ -334,11 +355,17 @@ class EmployeeList implements UI,ActionListener {
         Manager currentManager = null;
         ArrayList<String> employee;
         
+        /**
+        * Constructor which sets current manager to manager.
+        */
         public void initilizeProfile(Manager manager) {
             currentManager = manager;
             draw();
         }
 
+        /**
+        * Sets up GUI.
+        */
         @Override
         public void draw()
         {
@@ -418,11 +445,17 @@ class ViewCafeProfile implements UI,ActionListener {
         JButton goBack;
         Manager manager;
         
+        /**
+        * Constructor which sets manager to manager.
+        */
         public void initilizeProfile(Manager manager) {
             this.manager = manager;
             draw();
         }
 
+        /**
+        * Sets up GUI.
+        */
         @Override
         public void draw() {       
         window = new JFrame("Cafe Account Info");
