@@ -14,6 +14,7 @@ public class Employee extends Customer implements State{
         super(firstname,surname,email,password,number);
         this.cafe = cafe;
         this.id = ProfileControl.assignID(cafe);
+        this.state = "Clocked-Out";
     }
     
     public Cafe getCafe() {
@@ -38,11 +39,21 @@ public class Employee extends Customer implements State{
     
     public void clockIn()
     {
-        setState("Clocked-In");
+        if(!(clockedIn()))
+            setState("Clocked-In");
     }
     
     public void clockOut()
     {
-        setState("Clocked-Out");
+        if(!(clockedOut()))
+            setState("Clocked-Out");
+    }
+    
+    public boolean clockedIn() {
+        return state.equals("Clocked-In");
+    }
+    
+    public boolean clockedOut() {
+        return state.equals("Clocked-Out");
     }
 }
