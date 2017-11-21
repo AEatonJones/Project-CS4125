@@ -312,11 +312,12 @@ class CustomerMenuUI implements UI, ActionListener  {
         JButton pressed = (JButton) e.getSource();
 
         if(pressed.equals(order)) {
-           new PlaceOrder().draw();
+           this.frame.dispose();
+           new PlaceOrder().initilizeProfile(profile);
         }
         else if(pressed.equals(viewProfile)) {
             this.frame.dispose();
-            new ViewProfile().draw();
+            new ViewProfile().initilizeProfile(profile);
         }
         else if(pressed.equals(signOut)) {
             this.frame.dispose();
@@ -337,12 +338,19 @@ class PlaceOrder implements UI,ActionListener {
     JList orderItems;
     JComboBox<String> size, location;
     JButton addItem, place, back;
+    Profile profile;
+    
+    public void initilizeProfile(Profile currentProfile) {
+        profile = currentProfile;
+        draw();
+    }
     
     @Override
     public void draw() {
         window = new JFrame("Place an Order");
         window.setLayout(new BorderLayout());
         window.setLocationRelativeTo(null);
+        window.setSize(300,200);
         
         cafe = new JComboBox<Cafe>();
         try{
@@ -407,7 +415,7 @@ class PlaceOrder implements UI,ActionListener {
     private void closeWindow()
     {
         window.dispose();
-        new CustomerMenuUI();
+        new CustomerMenuUI().initilizeProfile(profile);
     }
     
     @Override
@@ -502,10 +510,6 @@ class ViewProfile implements UI,ActionListener {
         JPanel buttons = new JPanel();
         buttons.setLayout(new FlowLayout());
 
-        pastOrders = new JButton("Last Order");
-        pastOrders.addActionListener(this);
-        buttons.add(pastOrders);
-
         goBack = new JButton("Go Back");
         goBack.addActionListener(this);
         buttons.add(goBack);
@@ -518,11 +522,7 @@ class ViewProfile implements UI,ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton pressed = (JButton)e.getSource();
 
-        if(pressed.equals(pastOrders)) {
-           //Gives last order made
-        }
-
-        else if(pressed.equals(goBack)) {
+        if(pressed.equals(goBack)) {
             new CustomerMenuUI().initilizeProfile(currentProfile);
             this.window.dispose();
             }

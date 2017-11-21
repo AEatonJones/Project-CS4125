@@ -1,4 +1,4 @@
-Aaron,Jones,aaron@ul.ie,aaron123,086578123,waffe,
-Eva,Maughan,eva@ul.ie,eva123,0861124567,waffe,
-Jake,Craven,jake@ul.ie,jake123,098755682,waffe,
-William,Turner,william@ul.ie,william123,12345,waffe,
+Aaron,Jones,aaron@ul.ie,aaron123,086578123,waffe,110 Main Street,
+Eva,Maughan,eva@ul.ie,eva123,0861124567,waffe,110 Main Street,
+Jake,Craven,jake@ul.ie,jake123,098755682,waffe,110 Main Street,
+William,Turner,william@ul.ie,william123,12345,waffe,110 Main Street,

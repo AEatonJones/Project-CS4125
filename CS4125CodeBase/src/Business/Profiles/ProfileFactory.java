@@ -13,7 +13,6 @@ public class ProfileFactory
             case "Customer":profile = createCustomer(array);break;
             case "Employee":profile = createEmployee(array);break;
             case "Manager": profile = createManager(array);break;
-            case "Cafe":    profile = createCafe();break;
             default:break;
         }
         
@@ -33,7 +32,7 @@ public class ProfileFactory
     private static Profile createEmployee(String[] array) throws IOException {
         Profile profile = null;
         String firstname = null, surname = null, email = null, password = null, number = null;
-        Cafe cafe = ProfileDB.getInstance().getCafeByDetails("waffe", "110 Main Street"); 
+        Cafe cafe = ProfileDB.getInstance().getCafeByDetails(array[5], array[6]); 
         profile = new Employee(firstname = array[0], surname = array[1], email = array[2], password = array[3], number = array[4],cafe);      
         return profile;
     }
@@ -42,23 +41,8 @@ public class ProfileFactory
     private static Profile createManager(String[] array) throws IOException {
         Profile profile = null;
         String firstname = null, surname = null, email = null, password = null, number = null;
-        Cafe cafe = ProfileDB.getInstance().getCafeByDetails("waffe", "110 Main Street");  
+        Cafe cafe = ProfileDB.getInstance().getCafeByDetails(array[5], array[6]);  
         profile = new Manager(firstname = array[0], surname = array[1], email = array[2], password = array[3], number = array[4],cafe);      
         return profile;
-    }
-    
-    //public Cafe(String name, String address, int employeeCount, String email, String number)
-    private static Profile createCafe() throws IOException {
-        Profile profile = null;
-        
-        String name = null, address = null, email = null, number = null;
-        int employeeCount = 0; 
-        
-        //Prompt to add info via UI
-        
-        profile = new Cafe(name,address,employeeCount,email,number);
-        return profile;
-    }
-    
+    }   
 }
-//state operator

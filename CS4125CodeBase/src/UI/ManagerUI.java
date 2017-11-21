@@ -108,19 +108,11 @@ class ManagerSelectMode implements UI {
         window.setLocationRelativeTo(null);
         window.setDefaultCloseOperation(window.EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
-        Cafe cafe = null;
-        try
-        {
-            cafe = ProfileDB.getInstance().getCafeByDetails("waffe", "110 Main Street");
-        } catch (IOException ex)
-        {
-            Logger.getLogger(ManagerUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
         JLabel title = new JLabel("Welcome to the Manager UI, Manager " + manager.getSurname());
         window.add("North", title);
         
         JPanel buttons = new JPanel();
-        buttons.setLayout(new GridLayout(2,1));
+        buttons.setLayout(new GridLayout(3,1));
         
         JButton employeeMode = new JButton("Employee Mode");
         employeeMode.addActionListener(new ActionListener() {
@@ -143,6 +135,18 @@ class ManagerSelectMode implements UI {
             }
         });
         buttons.add(managerMode);
+        
+        JButton signOut = new JButton("Sign Out");
+        signOut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                manager = null;
+                window.dispose();
+                new ManagerUI().draw();
+            }
+        });
+        buttons.add(signOut);
         
         window.add("Center", buttons);
         
@@ -285,12 +289,15 @@ class EmployeeCreation implements UI,ActionListener {
         JButton pressed = (JButton)e.getSource();
                
         if(pressed.equals(register)) {         
-            String[] employeeDetails = new String[5];
+            String[] employeeDetails = new String[7];
             employeeDetails[0] = firstname.getText();
             employeeDetails[1] = surname.getText();
             employeeDetails[2] = email.getText();
             employeeDetails[3] = password.getText();
             employeeDetails[4] = number.getText();
+            employeeDetails[5] = manager.getCafe().getName();
+            employeeDetails[6] = manager.getCafe().getAddress();
+                    
 
             try {
                 Profile profile = ProfileFactory.createProfile("Employee", employeeDetails);
@@ -314,9 +321,11 @@ class EmployeeCreation implements UI,ActionListener {
 class EmployeeList implements UI,ActionListener {
         JFrame window;
         JList listOfEmployees;
+        JScrollPane scrollPane;
         DefaultListModel orderListModel;
-        JButton back;
+        JButton promoteManager, back;
         Manager currentManager = null;
+        ArrayList<String> employee;
         
         public void initilizeProfile(Manager manager) {
             currentManager = manager;
@@ -332,15 +341,18 @@ class EmployeeList implements UI,ActionListener {
             window.setResizable(false);
             window.setLocationRelativeTo(null);
             window.setDefaultCloseOperation(window.EXIT_ON_CLOSE);
-
+            
+            scrollPane = new JScrollPane();
             JPanel employeePanel = new JPanel();
+            JPanel buttonPanel = new JPanel();
             employeePanel.setLayout(new BoxLayout(employeePanel, BoxLayout.PAGE_AXIS));
+            buttonPanel.setLayout(new FlowLayout());
             JScrollPane scrollPane = new JScrollPane();
             orderListModel = new DefaultListModel();
             listOfEmployees = new JList(orderListModel);
             scrollPane.setViewportView(listOfEmployees);
             String cafeName = currentManager.getCafe().getName();
-            ArrayList<String> employee = null;
+            employee = null;
             try {
                     employee = ProfileControl.obtainEmployeeInfo(cafeName);
                 
@@ -350,19 +362,41 @@ class EmployeeList implements UI,ActionListener {
             for(int i = 0; i < employee.size() ;i++ ){
                 orderListModel.addElement(employee.get(i));
             }
+            scrollPane.setViewportView(listOfEmployees);
+            employeePanel.add(scrollPane);
 
-            employeePanel.add(listOfEmployees);
-
+            promoteManager = new JButton("Promote");
             back = new JButton("Back");
+            promoteManager.addActionListener(this);
             back.addActionListener(this);
-            employeePanel.add(back);
-            window.add(employeePanel);
+            buttonPanel.add(promoteManager);
+            buttonPanel.add(back);
+            window.add("North",employeePanel);
+            window.add("South",buttonPanel);
             window.setVisible(true);
         }
 
         public void actionPerformed(ActionEvent e) {
             JButton pressed = (JButton)e.getSource();
-            if(pressed.equals(back)){
+            if(pressed.equals(promoteManager)) {
+                int selectedIndex = listOfEmployees.getSelectedIndex();
+                String selectedDetails = employee.get(selectedIndex);
+                try {
+                    boolean isManager = ProfileControl.checkIfManager(selectedDetails);
+                    if(!isManager) {
+                        ProfileControl.promoteToManager(selectedDetails);
+                        JOptionPane.showMessageDialog(null,"Employee has been promoted to manager");
+                        window.dispose();
+                        new EmployeeList().initilizeProfile(currentManager);
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null,"A Manager cannot be promoted!");
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(ManagerModeUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else if(pressed.equals(back)) {
                 new ManagerModeUI().initilizeProfile(currentManager);
                 this.window.dispose();
                 }

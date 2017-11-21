@@ -112,7 +112,7 @@ class EmployeeWindow implements UI, OrderObserver, ActionListener{
     
     @Override
     public void draw(){
-        window = new JFrame("Employee interface");
+        window = new JFrame("Employee Interface");
         window.setSize(350, 230);
         window.setResizable(false);
         window.setLocationRelativeTo(null);

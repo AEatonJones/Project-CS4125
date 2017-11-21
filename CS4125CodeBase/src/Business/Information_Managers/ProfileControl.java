@@ -3,11 +3,7 @@ import Business.Profiles.Cafe;
 import Business.Profiles.Profile;
 import Business.Profiles.ProfileFactory;
 import Data.ProfileDB;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class ProfileControl {
@@ -58,13 +54,10 @@ public class ProfileControl {
             reader = new BufferedReader(new FileReader(filepath));
             while(((line = reader.readLine()) != null) && !found) {
                 String [] managerDetails = line.split(",");
-                if(managerDetails[2].equalsIgnoreCase(email))
+                if(managerDetails[2].equalsIgnoreCase(email) && managerDetails[3].equalsIgnoreCase(password))
                 {
-                    if(managerDetails[3].equalsIgnoreCase(password))
-                    {
-                        found = true;
-                        result = ProfileFactory.createProfile("Manager",managerDetails);
-                    }
+                    found = true;
+                    result = ProfileFactory.createProfile("Manager",managerDetails);
                 }
             }
         }
@@ -72,18 +65,38 @@ public class ProfileControl {
         return result;
     }
     
+    public static void removeFromFile(String info) throws IOException {
+        String line;
+        File file = new File(".\\src\\Resources\\Profiles\\Employees.txt");
+        File tempFile = new File(file + ".tmp");
+        //String filepath = ".\\src\\Resources\\Profiles\\Employees.txt";
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+        while(((line = reader.readLine()) != null)) {
+            if(!(line.equals(info))) {
+                writer.write(line);
+                writer.append("\n");
+            }
+        }
+        reader.close();
+        writer.close();
+        
+        file.delete();
+        tempFile.renameTo(file);
+
+    }
+    
     public static void printToFile(String[] profile,int type) throws IOException {
         String filepath;
         FileWriter fr;
-        Cafe cafe = ProfileDB.getInstance().getCafeByDetails("waffe", "110 Main Street");
         if(type == 1) { // type = customer
             filepath = ".\\src\\Resources\\Profiles\\Customers.txt";
             fr = new FileWriter(filepath,true);
             try {
+                fr.append("\n");
                 for(int i = 0 ; i < profile.length; i++) {
                         fr.append(profile[i] + ",");
                 }
-            fr.append("\n");
             }catch(IOException e) {
                 e.printStackTrace();
             }
@@ -93,11 +106,10 @@ public class ProfileControl {
             filepath = ".\\src\\Resources\\Profiles\\Employees.txt";
             fr = new FileWriter(filepath,true);
             try {
+                fr.append("\n");
                 for(int i = 0 ; i < profile.length; i++) {
                         fr.append(profile[i] + ",");
                 }
-            fr.append(cafe.getName() + ",");
-            fr.append("\n");
             }catch(IOException e) {
                 e.printStackTrace();
             }
@@ -107,11 +119,10 @@ public class ProfileControl {
             filepath = ".\\src\\Resources\\Profiles\\Managers.txt";
             fr = new FileWriter(filepath,true);
             try {
+                fr.append("\n");
                 for(int i = 0 ; i < profile.length; i++) {
                         fr.append(profile[i] + ",");
                 }
-            fr.append(cafe.getName() + ",");
-            fr.append("\n");
             }catch(IOException e) {
                 e.printStackTrace();
             }
@@ -164,4 +175,41 @@ public class ProfileControl {
         }
         return cafeInfo;
     }
+   
+    public static boolean checkIfManager(String details) throws IOException {
+        boolean result = false;
+        String filepath = ".\\src\\Resources\\Profiles\\Managers.txt";
+        String line;
+        String[] empDetails = details.split(" ");
+        BufferedReader reader = new BufferedReader(new FileReader(filepath));
+        while(((line = reader.readLine()) != null) && !result) {
+            String[] info = line.split(",");
+            if((empDetails[0].equals(info[0])) && (empDetails[1].equals(info[1])) && (empDetails[2].equals(info[2])) && (empDetails[3].equals(info[4])))
+                result = true;
+        }
+        return result;
+    }
+    
+    public static void promoteToManager(String details) throws IOException {
+        boolean found = false;
+        String filepath = ".\\src\\Resources\\Profiles\\Employees.txt";
+        String line;
+        String[] empDetails = details.split(" ");
+        BufferedReader reader = new BufferedReader(new FileReader(filepath));
+        while(((line = reader.readLine()) != null) && !found) {
+            String[] info = line.split(",");
+            if((empDetails[0].equals(info[0])) && (empDetails[1].equals(info[1])) && (empDetails[2].equals(info[2])) && (empDetails[3].equals(info[4]))) {
+                found = true;
+                
+                removeFromFile(line);
+                printToFile(info,3);
+            }
+        }
+    }
 }
+
+/*
+    promote to manager
+        remove data from list / fix gaps
+
+*/
