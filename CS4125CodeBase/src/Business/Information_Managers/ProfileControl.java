@@ -6,13 +6,30 @@ import Data.ProfileDB;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author hmaug
+ */
 public class ProfileControl {
    
+    /**
+     *
+     * @param cafe
+     * @return
+     */
     public static int assignID(Cafe cafe) {
         int id = 0;
         return id;
     }
     
+    /**
+     * Verifies if users login exists and get there information if they do.
+     * @param email
+     * @param password
+     * @param type
+     * @return
+     * @throws IOException
+     */
     public static Profile verifyProfile(String email,String password,int type) throws IOException {
         Profile result = null;
         String filepath;
@@ -65,6 +82,11 @@ public class ProfileControl {
         return result;
     }
     
+    /**
+     * Removes selected employee from file if being promoted.
+     * @param info
+     * @throws IOException
+     */
     public static void removeFromFile(String info) throws IOException {
         String line;
         File file = new File(".\\src\\Resources\\Profiles\\Employees.txt");
@@ -81,11 +103,16 @@ public class ProfileControl {
         
         BufferedWriter writer = new BufferedWriter(new FileWriter(file, false));
         writer.write(finalFileContents);
-        System.out.println(finalFileContents);
         
         writer.close();
     }
     
+    /**
+     * Writes the info of employee which was promoted too a new file.
+     * @param profile
+     * @param type
+     * @throws IOException
+     */
     public static void printToFile(String[] profile,int type) throws IOException {
         String filepath;
         FileWriter fr;
@@ -130,6 +157,12 @@ public class ProfileControl {
         }
     }
     
+    /**
+     * Adds new Manager info to file and returns that info.
+     * @param cafe
+     * @return
+     * @throws IOException
+     */
     public static ArrayList<String> obtainEmployeeInfo(String cafe) throws IOException {
         ArrayList<String> Employee = new ArrayList<String>();
         String filepath = ".\\src\\Resources\\Profiles\\Managers.txt";
@@ -160,22 +193,13 @@ public class ProfileControl {
         return Employee;
     }
     
-    public static String[] obtainCafeInfo(String cafe) throws IOException {
-        String[] cafeInfo = new String[5];
-        String filepath = ".\\src\\Resources\\Profiles\\Cafe\\Cafes.txt";
-        String details = null;
-        BufferedReader reader = new BufferedReader(new FileReader(filepath));
-        String line;
-        while((line = reader.readLine()) != null) 
-        {
-            String [] managerDetails = line.split(",");
-            if(managerDetails[5].equalsIgnoreCase(cafe)) {
-                details = managerDetails[0] + " "+managerDetails[1] + " "+managerDetails[2] + " " + managerDetails[4];
-            }
-        }
-        return cafeInfo;
-    }
    
+    /**
+     *Check if details match that of a manager.
+     * @param details
+     * @return
+     * @throws IOException
+     */
     public static boolean checkIfManager(String details) throws IOException {
         boolean result = false;
         String filepath = ".\\src\\Resources\\Profiles\\Managers.txt";
@@ -190,6 +214,11 @@ public class ProfileControl {
         return result;
     }
     
+    /**
+     * finds employee details and promotes to manager by calling removeFromFile and printToFile.
+     * @param details
+     * @throws IOException
+     */
     public static void promoteToManager(String details) throws IOException {
         boolean found = false;
         String filepath = ".\\src\\Resources\\Profiles\\Employees.txt";
@@ -200,7 +229,6 @@ public class ProfileControl {
             String[] info = line.split(",");
             if((empDetails[0].equals(info[0])) && (empDetails[1].equals(info[1])) && (empDetails[2].equals(info[2])) && (empDetails[3].equals(info[4]))) {
                 found = true;
-                
                 removeFromFile(line);
                 printToFile(info,3);
             }
