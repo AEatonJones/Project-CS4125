@@ -207,9 +207,3 @@ public class ProfileControl {
         }
     }
 }
-
-/*
-    promote to manager
-        remove data from list / fix gaps
-
-*/
