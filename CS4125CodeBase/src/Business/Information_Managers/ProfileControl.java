@@ -70,20 +70,20 @@ public class ProfileControl {
         File file = new File(".\\src\\Resources\\Profiles\\Employees.txt");
         File tempFile = new File(file + ".tmp");
         //String filepath = ".\\src\\Resources\\Profiles\\Employees.txt";
+        String finalFileContents = "";
         BufferedReader reader = new BufferedReader(new FileReader(file));
-        BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
         while(((line = reader.readLine()) != null)) {
             if(!(line.equals(info))) {
-                writer.write(line);
-                writer.append("\n");
+                finalFileContents += line + "\n";
             }
         }
         reader.close();
-        writer.close();
         
-        file.delete();
-        tempFile.renameTo(file);
-
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file, false));
+        writer.write(finalFileContents);
+        System.out.println(finalFileContents);
+        
+        writer.close();
     }
     
     public static void printToFile(String[] profile,int type) throws IOException {
