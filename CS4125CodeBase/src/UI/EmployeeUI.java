@@ -108,6 +108,7 @@ class EmployeeWindow implements UI, OrderObserver, ActionListener{
     public EmployeeWindow(Employee Employee){
         activeEmployee =  Employee;
         orders = new OrderListing();
+        draw();
     }
     
     @Override

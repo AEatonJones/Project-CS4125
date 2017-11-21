@@ -119,8 +119,8 @@ class ManagerSelectMode implements UI {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                window.dispose();
                 new EmployeeWindow((Employee) manager);
+                window.dispose();
             }
         });
         buttons.add(employeeMode);
