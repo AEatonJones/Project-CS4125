@@ -1,6 +1,8 @@
 
 package Business;
-
+/**
+ * this is the interface which will be implemented by the listings.
+ */
 public interface Listing<T>{
     public abstract void sortListing();
     public abstract void push(T listItem);

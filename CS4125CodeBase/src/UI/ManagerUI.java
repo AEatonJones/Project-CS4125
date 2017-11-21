@@ -17,12 +17,19 @@ import javax.swing.*;
 import UI.UI;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author hmaug
+ */
 public class ManagerUI implements UI,ActionListener {
     JFrame window;
     JTextField email;
     JPasswordField password;
     JButton signIn, goBack;
     
+    /**
+     * Sets up GUI.
+     */
     @Override
     public void draw() {
         window = new JFrame("Manager Sign In");

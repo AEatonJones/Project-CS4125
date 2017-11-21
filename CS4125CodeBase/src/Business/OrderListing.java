@@ -47,7 +47,7 @@ public class OrderListing implements Listing<Order>{
     }
     
     /**
-     *
+     *Sorts waiting list.
      */
     @Override
     public void sortListing(){
@@ -55,7 +55,7 @@ public class OrderListing implements Listing<Order>{
     }
 
     /**
-     *
+     *Adds items to the ArrayList waiting.
      * @param listItem
      */
     @Override
@@ -65,7 +65,7 @@ public class OrderListing implements Listing<Order>{
     }
 
     /**
-     *
+     * Transfer order from waiting list to ready list.
      * @param listItem
      */
     @Override
