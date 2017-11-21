@@ -11,13 +11,21 @@ public class Customer extends Profile {
        this.password = password;
        
     }
-    
+    /**
+     * getter which gets the customers first name.
+     */
     public String getFirstName() {
         return this.firstname;
     }
+    /**
+     * getter which gets the customers sur name.
+     */
     public String getSurname() {
         return this.surname;
     }
+    /**
+     * getter which gets the customers password.
+     */
     public String getPassword() {
         return this.password;
     }
