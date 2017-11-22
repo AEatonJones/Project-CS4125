@@ -2,13 +2,15 @@ package Business.Profiles;
 
 import Data.OrderDB;
 import Business.Information_Managers.ProfileControl;
+import Business.State.ClockedIn;
+import Business.State.ClockedOut;
 import Business.State.State;
 
-public class Employee extends Customer implements State{
+public class Employee extends Customer {
     
     private int id;
     private Cafe cafe;
-    private String state;
+    private State state;
 
     /**
      * Constructor.
@@ -23,7 +25,7 @@ public class Employee extends Customer implements State{
         super(firstname,surname,email,password,number);
         this.cafe = cafe;
         this.id = ProfileControl.assignID(cafe);
-        this.state = "Clocked-Out";
+        this.state = new ClockedOut();
     }
     /**
      * getter which returns cafe.
@@ -42,18 +44,19 @@ public class Employee extends Customer implements State{
      * Getter used to retrieve the state of the employee.
      * @return The state of employee(clocked in or out).
      */
-    @Override
-    public String getState()
+    private State getState()
     {
         return state;
     }
     /**
      * setter which sets state and is needed due to state interface.
      */
-    @Override
     public void setState(String state)
     {
-        this.state = state;
+        switch(state) {
+            case "Clock-In": this.state = new ClockedIn();break;
+            case "Clock-Out": this.state = new ClockedOut();break;
+        }
     }
     
     /**
@@ -61,16 +64,16 @@ public class Employee extends Customer implements State{
      */
     public void clockIn()
     {
-        if(!(clockedIn()))
-            setState("Clocked-In");
+        if(!(state instanceof ClockedIn))
+            setState("Clock-In");
     }
     /**
      * sets state of employee to clocked out.
      */
     public void clockOut()
     {
-        if(!(clockedOut()))
-            setState("Clocked-Out");
+        if(!(state instanceof ClockedOut))
+            setState("Clock-Out");
     }
     
     /**

@@ -1,7 +1,9 @@
 package Business.State;
 
-public interface State
+public abstract class State
 {
-    public abstract String getState();
-    public abstract void setState(String state);
+    String description;
+    public String getState() {
+        return description;
+    }
 }
