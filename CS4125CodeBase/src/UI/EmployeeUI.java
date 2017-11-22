@@ -239,7 +239,7 @@ class EmployeeWindow implements UI, OrderObserver, ActionListener{
         finishOrder = new JButton("Finish Order");
         finishOrder.addActionListener(this);
         buttons.add(finishOrder);
-        signOut = new JButton("Sign Out");
+        signOut = new JButton("Exit to Menu");
         signOut.addActionListener(this);
         buttons.add(signOut);
         

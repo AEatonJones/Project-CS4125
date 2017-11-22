@@ -12,6 +12,12 @@ public class Employee extends Customer implements State{
 
     /**
      * Constructor.
+     * @param firstname First name of employee.
+     * @param surname Surname of employee.
+     * @param email Employee account email.
+     * @param password Employee account password.
+     * @param number Employee phone number.
+     * @param cafe Each employee holds their cafe object.
      */
     public Employee(String firstname, String surname, String email, String password, String number, Cafe cafe) {
         super(firstname,surname,email,password,number);
@@ -33,7 +39,8 @@ public class Employee extends Customer implements State{
     }
 
     /**
-     * getter which returns state and is needed due to state interface.
+     * Getter used to retrieve the state of the employee.
+     * @return The state of employee(clocked in or out).
      */
     @Override
     public String getState()
