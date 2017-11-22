@@ -55,9 +55,7 @@ public abstract class Order implements Comparable<Order>{
     public String getPaymentType() {
         return paymentType;
     }
-    /**
-     * 
-     */
+    
     public abstract String getDetails();
     /**
      * Checks to see which order will be done quicker.

@@ -38,7 +38,7 @@ public class MenuItem
     }
     /**
      *Gets the cafe of the item.
-     * @reutrn The cafe of the item.
+     * @return The cafe of the item.
      */
     public Cafe getCafe(){
         return this.cafe;

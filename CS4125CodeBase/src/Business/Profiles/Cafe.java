@@ -62,7 +62,7 @@ public class Cafe extends Profile {
     }
     /**
      *Sets the balance (not used?).
-     * @[aram cost
+     * @param cost
      */
     public void setBalance(double cost) {
         
