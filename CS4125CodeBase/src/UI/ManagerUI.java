@@ -105,7 +105,8 @@ class ManagerSelectMode implements UI {
     JFrame window;
     
     /**
-     * Constructor which gets the variable manager.
+     * Constructor.
+     * @param manager Current manager.
      */
     ManagerSelectMode(Manager manager) {
         this.manager = manager;
@@ -177,7 +178,8 @@ class ManagerModeUI implements UI{
         Manager currentManager = null;
         
         /**
-         *  Constructor which sets currentManager to manager.
+         *  Constructor.
+         * @param manager Current Manager.
          */
         public void initilizeProfile(Manager manager) {
             currentManager = manager;
@@ -256,7 +258,8 @@ class EmployeeCreation implements UI,ActionListener {
     Manager manager;
     
     /**
-     * Constructor which sets manager to manager.
+     * Constructor.
+     * @param manager Current manager.
      */
     public EmployeeCreation(Manager manager) {
         this.manager = manager;
@@ -312,6 +315,9 @@ class EmployeeCreation implements UI,ActionListener {
         window.setVisible(true);
     }
 
+    /**
+    * If a button is pressed.
+    */
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton pressed = (JButton)e.getSource();
@@ -356,7 +362,8 @@ class EmployeeList implements UI,ActionListener {
         ArrayList<String> employee;
         
         /**
-        * Constructor which sets current manager to manager.
+        * Constructor.
+        * @param manager Current manager.
         */
         public void initilizeProfile(Manager manager) {
             currentManager = manager;
@@ -410,6 +417,9 @@ class EmployeeList implements UI,ActionListener {
             window.setVisible(true);
         }
 
+        /**
+        * If a button is pressed.
+        */
         public void actionPerformed(ActionEvent e) {
             JButton pressed = (JButton)e.getSource();
             if(pressed.equals(promoteManager)) {
@@ -446,7 +456,8 @@ class ViewCafeProfile implements UI,ActionListener {
         Manager manager;
         
         /**
-        * Constructor which sets manager to manager.
+        * Constructor.
+        * @param manager Current manager.
         */
         public void initilizeProfile(Manager manager) {
             this.manager = manager;
@@ -495,6 +506,9 @@ class ViewCafeProfile implements UI,ActionListener {
         window.setVisible(true);
     }
 
+    /**
+    * If a button is pressed.
+    */
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton pressed = (JButton)e.getSource();

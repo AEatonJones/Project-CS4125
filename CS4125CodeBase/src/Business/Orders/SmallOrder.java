@@ -6,7 +6,8 @@ import Data.MenuItem;
 public class SmallOrder extends OrderDecorator 
 {
     /**
-     * gets the items on the order.
+     * Gets the items on the order.
+     * @param order Current order.
      */
     public SmallOrder(Order order){
         super(order);
@@ -15,7 +16,8 @@ public class SmallOrder extends OrderDecorator
     }
     
     /**
-     * gets the cost of the order.
+     * Gets the cost of the order.
+     * @return The cost of the order.
      */
     @Override
     public float getCost(){
@@ -23,7 +25,8 @@ public class SmallOrder extends OrderDecorator
     }
     
     /**
-     * gets estimated time of the order.
+     * Gets estimated time of the order.
+     * @return The estimated time to finish.
      */
     @Override
     public int getEtf(){

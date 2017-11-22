@@ -12,19 +12,22 @@ public class Customer extends Profile {
        
     }
     /**
-     * getter which gets the customers first name.
+     * Getter which gets the customers first name.
+     * @return First name of customer.
      */
     public String getFirstName() {
         return this.firstname;
     }
     /**
-     * getter which gets the customers sur name.
+     * Getter which gets the customers sur name.
+     * @return Sur name of customer.
      */
     public String getSurname() {
         return this.surname;
     }
     /**
-     * getter which gets the customers password.
+     * Getter which gets the customers password.
+     * @return Password of customer.
      */
     public String getPassword() {
         return this.password;

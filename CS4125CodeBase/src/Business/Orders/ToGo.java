@@ -4,7 +4,9 @@ import Data.MenuItem;
 public class ToGo extends Order{
 
     /**
-     * 
+     * Constructor.
+     * @param items Menu of items.
+     * @param paymentType What form of payment will be used.
      */
     public ToGo(MenuItem[] items, String paymentType){
         this.items = items;
@@ -13,7 +15,8 @@ public class ToGo extends Order{
         this.paymentType = paymentType;
     }
     /**
-     * 
+     * Getter which will return the order of items and its cost.
+     * @return Result of order which is its items and cost.
      */
     @Override
     public String getDetails(){

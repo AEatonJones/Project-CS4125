@@ -28,13 +28,15 @@ public class Employee extends Customer {
         this.state = new ClockedOut();
     }
     /**
-     * getter which returns cafe.
+     * Getter used to retrieve the cafe of the employee.
+     * @return The cafe of the employee.
      */
     public Cafe getCafe() {
         return cafe;
     }
     /**
-     * getter which returns ID.
+     * Getter which is used to retrieve the id of the employee.
+     * @return The id of the employee.
      */
     public int getID() {
         return id;
@@ -49,7 +51,8 @@ public class Employee extends Customer {
         return state;
     }
     /**
-     * setter which sets state and is needed due to state interface.
+     * Setter which sets state and is needed due to state interface.
+     * 
      */
     public void setState(String state)
     {
@@ -60,7 +63,7 @@ public class Employee extends Customer {
     }
     
     /**
-     * sets state of employee to clocked in.
+     * Sets state of employee to clocked in.
      */
     public void clockIn()
     {
@@ -68,7 +71,7 @@ public class Employee extends Customer {
             setState("Clock-In");
     }
     /**
-     * sets state of employee to clocked out.
+     * Sets state of employee to clocked out.
      */
     public void clockOut()
     {
@@ -77,13 +80,15 @@ public class Employee extends Customer {
     }
     
     /**
-     * 
+     * Gets the state of the employee which is set to clocked in.
+     * @return the state of the employee.
      */
     public boolean clockedIn() {
         return state.equals("Clocked-In");
     }
     /**
-     * 
+     * Gets the state of the employee which is set to clocked out.
+     * @return the state of the employee.
      */
     public boolean clockedOut() {
         return state.equals("Clocked-Out");

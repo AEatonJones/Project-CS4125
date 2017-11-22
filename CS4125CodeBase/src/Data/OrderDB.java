@@ -13,11 +13,18 @@ public class OrderDB implements Database<Order>, Subject{
     
     private static OrderDB instance = null;
     
+    /**
+    * 
+    */
     private OrderDB()
     {
         observers = new ArrayList<OrderObserver>();
     }
     
+    /**
+    * Getter which gets the current order database.
+    * @return instance Which is the current order database.
+    */
     public static OrderDB getInstance()
     {
         if(instance == null)
@@ -26,6 +33,10 @@ public class OrderDB implements Database<Order>, Subject{
         return instance;
     }
     
+    /**
+    * Adds the order to the order database.
+    * @param order Current order.
+    */
     public void addOrder(Order order){
         try
         {
@@ -38,21 +49,34 @@ public class OrderDB implements Database<Order>, Subject{
         }
     }
     
+    /**
+    * Removes the order to be made from the order database.
+    * @param order Current order.
+    */
     public void pickOrder(Order order){
         notifyObservers(order, "REMOVE");
     }
     
+    /**
+    * 
+    */
     @Override
     public void attachObserver(OrderObserver observer){
         observers.add(observer);
     }
 
+    /**
+    * 
+    */
     @Override
     public void dettachObserver(OrderObserver observer)
     {
         observers.remove(observer);
     }
 
+    /**
+    * 
+    */
     @Override
     public void notifyObservers(Order order, String action)
     {
@@ -62,6 +86,9 @@ public class OrderDB implements Database<Order>, Subject{
         }
     }
 
+    /**
+    * 
+    */
     @Override
     public void writeToFile(Order data)throws IOException
     {

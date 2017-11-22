@@ -13,8 +13,8 @@ public class OrderListing implements Listing<Order>{
     private ArrayList<Order> ready = new ArrayList<Order>();
     
     /**
-     * returns the size of the ArrayList named waiting.
-     * @return
+     * Gets the size of the ArrayList named waiting.
+     * @return waiting.size The size of the ArrayList waiting.
      */
     public int amountWaiting()
     {
@@ -22,8 +22,8 @@ public class OrderListing implements Listing<Order>{
     }
     
     /**
-     * returns the size of the ArrayList named ready.
-     * @return
+     * Gets the size of the ArrayList named ready.
+     * @return ready.size The size of the ArrayList waiting.
      */
     public int amountReady()
     {
@@ -31,16 +31,16 @@ public class OrderListing implements Listing<Order>{
     }
     
     /**
-     *returns the ArrayList named waiting.
-     * @return
+     *Gets the ArrayList named waiting.
+     * @return waiting The ArrayList waiting.
      */
     public ArrayList<Order> getWaitingOrders(){
         return waiting;
     }
     
     /**
-     * returns the ArrayList named waiting.
-     * @return
+     * Gets the ArrayList named waiting.
+     * @return ready The ArrayList ready.
      */
     public ArrayList<Order> getReadyOrders(){
         return ready;
@@ -56,7 +56,7 @@ public class OrderListing implements Listing<Order>{
 
     /**
      *Adds items to the ArrayList waiting.
-     * @param listItem
+     * @param listItem item in Current order.
      */
     @Override
     public void push(Order listItem){
@@ -66,7 +66,7 @@ public class OrderListing implements Listing<Order>{
 
     /**
      * Transfer order from waiting list to ready list.
-     * @param listItem
+     * @param listItem item in Current order.
      */
     @Override
     public void pick(Order listItem)

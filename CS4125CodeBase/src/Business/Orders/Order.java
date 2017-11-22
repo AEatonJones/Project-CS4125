@@ -10,7 +10,8 @@ public abstract class Order implements Comparable<Order>{
     float surcharge;
     String paymentType;
     /**
-     * gets the cost of an item.
+     * Gets the cost of an item.
+     * @return cost Which is the price of the order.
      */
     public float getCost()
     {
@@ -24,7 +25,8 @@ public abstract class Order implements Comparable<Order>{
         return cost;
     }
     /**
-     * returns the cafe name.
+     * Gets the Cafe menu.
+     * @return items Which is Cafe menu.
      */
     public Cafe getCafe()
     {
@@ -33,7 +35,8 @@ public abstract class Order implements Comparable<Order>{
     }
 
     /**
-     *  gets the estimated time to finish.
+     *  Gets the estimated time to finish.
+     * @return etf Estimated time to finish.
      */
     public int getEtf()
     {
@@ -46,7 +49,8 @@ public abstract class Order implements Comparable<Order>{
         return etf;
     }
     /**
-     * gets the payment type (not needed anymore?)
+     * Gets the payment type (not needed anymore?)
+     * @return paymentType which is what form of payment will be used.
      */
     public String getPaymentType() {
         return paymentType;
@@ -56,7 +60,8 @@ public abstract class Order implements Comparable<Order>{
      */
     public abstract String getDetails();
     /**
-     * checks to see which order will be done quicker.
+     * Checks to see which order will be done quicker.
+     * @return result Which is what order is faster.
      */
     @Override
     public int compareTo(Order o){
@@ -71,6 +76,10 @@ public abstract class Order implements Comparable<Order>{
         return result;
     }
     
+    /**
+     * Converts Order to a String.
+     * @return this.getDetails Which is a string.
+     */
     @Override
     public String toString(){
         return this.getDetails();

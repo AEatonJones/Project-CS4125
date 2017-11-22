@@ -2,6 +2,9 @@ package UI;
 
 public class ProfileUI implements UI {
 
+    /**
+    * Sets up GUI (not supported yet).
+    */
     @Override
     public void draw()
     {

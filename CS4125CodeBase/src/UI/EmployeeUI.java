@@ -26,6 +26,9 @@ public class EmployeeUI implements UI,ActionListener {
     JPasswordField password;
     JButton signIn, goBack;
     
+    /**
+    * Sets up GUI.
+    */
     @Override
     public void draw() {
         window = new JFrame("Employee Sign In");
@@ -64,6 +67,9 @@ public class EmployeeUI implements UI,ActionListener {
         window.setVisible(true);
     }
 
+    /**
+    * If a button is pressed.
+    */
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton pressed = (JButton)e.getSource();
@@ -99,10 +105,17 @@ class EmployeeMenu implements UI, ActionListener{
     JFrame window;
     JButton orderWindow, clockIn, clockOut, logOff;
     
+    /**
+    * Constructor.
+    * @param employee Current employee.
+    */
     public EmployeeMenu(Employee employee) {
         this.employee = employee;
     }
     
+    /**
+    * Sets up GUI.
+    */
     @Override
     public void draw()
     {
@@ -142,6 +155,9 @@ class EmployeeMenu implements UI, ActionListener{
         window.setVisible(true);
     }
 
+    /**
+    * If a button is pressed.
+    */
     @Override
     public void actionPerformed(ActionEvent e)
     {
@@ -190,11 +206,18 @@ class EmployeeWindow implements UI, OrderObserver, ActionListener{
     JComboBox<Order> ready = new JComboBox<Order>();
     JButton pickOrder, finishOrder, signOut;
     
+    /**
+    * Constructor.
+    * @param Employee The current Employee.
+    */
     public EmployeeWindow(Employee Employee){
         activeEmployee =  Employee;
         orders = new OrderListing();
     }
     
+    /**
+    * Sets up GUI.
+    */
     @Override
     public void draw(){
         window = new JFrame("Employee Interface");
@@ -248,6 +271,9 @@ class EmployeeWindow implements UI, OrderObserver, ActionListener{
         window.setVisible(true);
     }
 
+    /**
+    * Updates waiting and ready lists.
+    */
     @Override
     public void update(Order order, String action){
         switch(action.toUpperCase()){
@@ -256,6 +282,9 @@ class EmployeeWindow implements UI, OrderObserver, ActionListener{
         }
     }
 
+    /**
+    * If a button is pressed.
+    */
     @Override
     public void actionPerformed(ActionEvent e){
         JButton pressed = (JButton)e.getSource();

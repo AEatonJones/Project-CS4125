@@ -6,7 +6,12 @@ import java.io.IOException;
 
 public class ProfileFactory 
 {
-    
+    /**
+     * Creates a profile of a certain type.
+     *@param type Used to determine which type of profile will be created.
+     * @param array Holds the information of the profile to be created.
+     * @return profile Which is either of customer, employee or manager type.
+     */
     public static Profile createProfile(String type,String[] array) throws IOException {
         Profile profile = null;
         switch(type){
@@ -19,7 +24,10 @@ public class ProfileFactory
         return profile;
     }
     
-    //public Customer(String firstname, String surname, String email, String password,String number,String type)
+    /**
+     * Creates a profile of customer type.
+     * @return profile Which is of customer type.
+     */
     private static Profile createCustomer(String[] array) {
         Profile profile = null;
         String firstname = null, surname = null, email = null, password = null, number = null;
@@ -28,7 +36,10 @@ public class ProfileFactory
         return profile;
     }
     
-    //public Employee(String firstname, String surname, String email, String password, String number, Cafe cafe)
+    /**
+     * Creates a profile of employee type.
+     * @return profile Which is of employee type.
+     */
     private static Profile createEmployee(String[] array) throws IOException {
         Profile profile = null;
         String firstname = null, surname = null, email = null, password = null, number = null;
@@ -37,7 +48,10 @@ public class ProfileFactory
         return profile;
     }
     
-    //public Manager(String firstname, String surname, String email, String password, String number, Cafe cafe)
+    /**
+     *Creates a profile of manager type.
+     * @return profile Which is of manager type.
+     */
     private static Profile createManager(String[] array) throws IOException {
         Profile profile = null;
         String firstname = null, surname = null, email = null, password = null, number = null;

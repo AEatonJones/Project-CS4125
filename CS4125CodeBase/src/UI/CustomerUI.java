@@ -21,6 +21,9 @@ import javax.swing.*;
 
 public class CustomerUI implements UI {
 
+    /**
+     * Constructor.
+     */
     public CustomerUI() {
      
     }
@@ -35,6 +38,9 @@ class CustomerLoginUI implements UI, ActionListener {
     JFrame frame;
     JButton signIn,register,quit;
 
+    /**
+     * Sets up GUI.
+     */
     @Override
     public void draw() {
         frame = new JFrame("Login");
@@ -74,6 +80,9 @@ class CustomerLoginUI implements UI, ActionListener {
         frame.setVisible(true);
     }
 
+    /**
+     * If a button is pressed.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton pressed = (JButton) e.getSource();
@@ -98,6 +107,9 @@ class CustomerSignIn implements UI,ActionListener {
     JPasswordField password;
     JButton signIn, goBack;
     
+    /**
+     * Sets up GUI.
+     */
     @Override
     public void draw() {
         window = new JFrame("Sign In");
@@ -136,6 +148,9 @@ class CustomerSignIn implements UI,ActionListener {
         window.setVisible(true);
     }
 
+    /**
+     * If a button is pressed.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton pressed = (JButton)e.getSource();
@@ -171,6 +186,9 @@ class CustomerRegister implements UI,ActionListener {
     JTextField firstname, surname, password, email, number;
     JButton register, goBack;
     
+    /**
+     * Sets up GUI.
+     */
     @Override
     public void draw() {
         window = new JFrame("Register your Account");
@@ -217,6 +235,9 @@ class CustomerRegister implements UI,ActionListener {
         window.setVisible(true);
     }
 
+    /**
+     * If a button is pressed.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton pressed = (JButton)e.getSource();
@@ -260,11 +281,17 @@ class CustomerMenuUI implements UI, ActionListener  {
         JButton order, viewProfile, quit, signOut;
         Profile profile;
         
+        /**
+        * Constructor.
+        */
         public void initilizeProfile(Profile currentProfile) {
             profile = currentProfile;
             draw();
         }
         
+     /**
+     * Sets up GUI.
+     */
     @Override
     public void draw() {
         frame = new JFrame("Menu");
@@ -307,6 +334,9 @@ class CustomerMenuUI implements UI, ActionListener  {
         frame.setVisible(true);
     }
 
+    /**
+     * If a button is pressed.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton pressed = (JButton) e.getSource();
@@ -340,11 +370,17 @@ class PlaceOrder implements UI,ActionListener {
     JButton addItem, place, back;
     Profile profile;
     
+     /**
+     * Constructor.
+     */
     public void initilizeProfile(Profile currentProfile) {
         profile = currentProfile;
         draw();
     }
     
+    /**
+     * Sets up GUI.
+     */
     @Override
     public void draw() {
         window = new JFrame("Place an Order");
@@ -412,12 +448,18 @@ class PlaceOrder implements UI,ActionListener {
         window.setVisible(true);
     }
 
+    /**
+    * Closes the Window.
+    */
     private void closeWindow()
     {
         window.dispose();
         new CustomerMenuUI().initilizeProfile(profile);
     }
     
+    /**
+     * If a button is pressed.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton pressed = (JButton)e.getSource();
@@ -471,11 +513,17 @@ class ViewProfile implements UI,ActionListener {
         JButton pastOrders, goBack;
         Customer currentProfile;
         
+        /**
+        * Constructor.
+        */
         public void initilizeProfile(Profile profile) {
             currentProfile = (Customer) profile;
             draw();
         }
 
+        /**
+        * Sets up GUI.
+        */
         @Override
         public void draw() {       
         window = new JFrame("Account Info");
@@ -518,6 +566,9 @@ class ViewProfile implements UI,ActionListener {
         window.setVisible(true);
     }
 
+        /**
+        * If a button is pressed.
+        */
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton pressed = (JButton)e.getSource();

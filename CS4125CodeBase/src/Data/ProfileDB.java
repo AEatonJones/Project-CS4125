@@ -9,10 +9,17 @@ public class ProfileDB {
     
     private static ProfileDB instance = null;
     
+    /**
+     * Constructor.
+     */
     private ProfileDB(){
         
     }
     
+    /**
+     * Gets the Current profile Database.
+     * @return instance The current profile Database.
+     */
     public static ProfileDB getInstance(){
         if(instance == null)
             instance = new ProfileDB();
@@ -22,6 +29,8 @@ public class ProfileDB {
     
     /**
      * Gets the details of the cafe which was selected from the text file.
+     * @param name The name of the cafe.
+     * @param address The address of the cafe.
      */
     public Cafe getCafeByDetails(String name, String address) throws IOException
     {
@@ -52,7 +61,8 @@ public class ProfileDB {
     }
     
     /**
-     * Gets the menu from the cafe which was selected and returns it.
+     * Gets the menu from the cafe which was selected.
+     * @return result Which is a Menu item.
      */
     public ArrayList<MenuItem> getMenuFromCafe(Cafe cafe) throws IOException
     {

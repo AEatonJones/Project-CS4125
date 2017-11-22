@@ -10,6 +10,11 @@ public class OrderUI implements UI, OrderObserver{
 
     ArrayList<Order> orders;
     
+    /**
+    * Adds or removes order.
+    * @param order Current order.
+    * @param action Which action used.
+    */
     @Override
     public void update(Order order, String action)
     {
