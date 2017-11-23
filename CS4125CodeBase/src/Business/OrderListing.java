@@ -4,9 +4,8 @@ import Business.Orders.Order;
 import java.util.ArrayList;
 
 /**
- *
- * @author hmaug
- */
+* Concrete listing of Order type.
+*/
 public class OrderListing implements Listing<Order>{
 
     private ArrayList<Order> waiting = new ArrayList<Order>();
@@ -55,7 +54,7 @@ public class OrderListing implements Listing<Order>{
     }
 
     /**
-     *Adds items to the ArrayList waiting.
+     *Adds Order object to the ArrayList waiting.
      * @param listItem item in Current order.
      */
     @Override
@@ -65,7 +64,7 @@ public class OrderListing implements Listing<Order>{
     }
 
     /**
-     * Transfer order from waiting list to ready list.
+     * Transfer Order object from waiting list to ready list.
      * @param listItem item in Current order.
      */
     @Override

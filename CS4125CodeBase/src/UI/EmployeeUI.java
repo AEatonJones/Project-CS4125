@@ -244,7 +244,7 @@ class EmployeeWindow implements UI, OrderObserver, ActionListener{
             waffe = ProfileDB.getInstance().getCafeByDetails("waffe", "110 Main Street");
         
             Data.MenuItem[] items = {new Data.MenuItem(waffe, "Scone", 3.0f, 1)};
-            Order order = new SmallOrder(new ToGo(items, "CC"));
+            Order order = new SmallOrder(new ToGo(items, "Credit Card"));
             
             waiting.addItem(order);
             
@@ -295,7 +295,9 @@ class EmployeeWindow implements UI, OrderObserver, ActionListener{
         }
         
         else if(pressed.equals(finishOrder)){
+
             ready.removeItemAt(ready.getSelectedIndex());
+            
         }
         
         else if(pressed.equals(signOut)){

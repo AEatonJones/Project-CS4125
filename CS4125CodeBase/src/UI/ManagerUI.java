@@ -100,7 +100,6 @@ public class ManagerUI implements UI,ActionListener {
 }
 
 class ManagerSelectMode implements UI {
-    //String firstname, String surname, String email, String password, String number, Cafe cafe
     Manager manager = null;
     JFrame window;
     

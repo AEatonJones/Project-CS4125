@@ -1,1 +1,1 @@
-waffe,110 Main Street,2,Cafe@Waffe.com,055555555,
+waffe,110 Main Street,6,Cafe@Waffe.com,055555555,1000.00

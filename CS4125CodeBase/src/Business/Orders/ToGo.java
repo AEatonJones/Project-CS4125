@@ -15,6 +15,13 @@ public class ToGo extends Order{
         this.paymentType = paymentType;
     }
     /**
+     * Gets the payment type (not needed anymore?)
+     * @return paymentType which is what form of payment will be used.
+     */
+    public String getPaymentType() {
+        return paymentType;
+    }
+    /**
      * Getter which will return the order of items and its cost.
      * @return Result of order which is its items and cost.
      */
@@ -24,7 +31,8 @@ public class ToGo extends Order{
         for(MenuItem item : items)
             result += item.getName() + ", ";
         
-        result += getCost();
+        result += getCost() + " ";
+        result += getPaymentType();
         
         return result;
     }

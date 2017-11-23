@@ -15,7 +15,7 @@ public class OrderDBUnittest
     
     @Before
     public void init() throws IOException{
-        cafe = new Cafe("Cafe great", "101 avenue", 10, "", "");
+        cafe = new Cafe("Cafe great", "101 avenue", 10, "", "",1000.00);
 
         items = new MenuItem[3];
         items[0] = new MenuItem(cafe, "coffee", 10.0f, 2);

@@ -19,14 +19,16 @@ public class Cafe extends Profile {
      * @param employeeCount The amount of employees that work there.
      * @param email The email of the cafe.
      * @param number The number of the cafe.
+     * @param balance The balance of the cafe.
+     * @throws IOException Throws IO Exception.
      */
-    public Cafe(String name, String address, int employeeCount, String email, String number) throws IOException {
+    public Cafe(String name, String address, int employeeCount, String email, String number, double balance) throws IOException {
         super(email,number);
         this.name = name;
         this.address = address;
         this.employeeCount = employeeCount;
         this.cafeMenu = new Menu(this,ProfileDB.getInstance().getMenuFromCafe(this));
-        this.balance = 0;
+        this.balance = balance;
     }
     
     /**
@@ -52,7 +54,7 @@ public class Cafe extends Profile {
     public Menu getMenu() {
         return cafeMenu;
     }
-    
+   
     /**
      *Gets the balance of the cafe.
      * @return Balance of the cafe.
@@ -61,8 +63,8 @@ public class Cafe extends Profile {
         return balance;
     }
     /**
-     *Sets the balance (not used?).
-     * @param cost
+     *Sets the balance.
+     * @param cost cost of the order.
      */
     public void setBalance(double cost) {
         

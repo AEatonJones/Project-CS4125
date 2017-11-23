@@ -20,7 +20,7 @@ public class Customer extends Profile {
     }
     /**
      * Getter which gets the customers sur name.
-     * @return Sur name of customer.
+     * @return Surname of customer.
      */
     public String getSurname() {
         return this.surname;

@@ -4,10 +4,13 @@ import Business.Orders.Order;
 import Data.OrderDB;
 
 /**
-* Is an interface that is used for updates.
+* An interface which describes an order observer.
 */
 public interface OrderObserver{
-    
+    /**
+     * @param order The affecting order.
+     * @param action The specified action to use on the order.
+     */
     public abstract void update(Order order, String action);
     
 }

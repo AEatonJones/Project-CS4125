@@ -31,6 +31,8 @@ public class ProfileDB {
      * Gets the details of the cafe which was selected from the text file.
      * @param name The name of the cafe.
      * @param address The address of the cafe.
+     * @return Returns the details of the cafe.
+     * @throws IOException Throws IO Exception.
      */
     public Cafe getCafeByDetails(String name, String address) throws IOException
     {
@@ -52,7 +54,8 @@ public class ProfileDB {
                     int employeeCount = Integer.parseInt(cafeDetails[2]);
                     String email = cafeDetails[3];
                     String number = cafeDetails[4];
-                    result = new Cafe(cafeName, cafeAddress, employeeCount, email, number);
+                    double balance = Double.parseDouble(cafeDetails[5]);
+                    result = new Cafe(cafeName, cafeAddress, employeeCount, email, number, balance);
                 }
             }
         }
@@ -62,7 +65,9 @@ public class ProfileDB {
     
     /**
      * Gets the menu from the cafe which was selected.
-     * @return result Which is a Menu item.
+     * @param  cafe Cafe object used to get Menu.
+     * @return result Returns a ArrayList of MenuItems associated with the cafe.
+     * @throws IOException Throws IO Exception.
      */
     public ArrayList<MenuItem> getMenuFromCafe(Cafe cafe) throws IOException
     {

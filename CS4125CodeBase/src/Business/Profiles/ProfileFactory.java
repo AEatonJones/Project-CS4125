@@ -11,6 +11,7 @@ public class ProfileFactory
      *@param type Used to determine which type of profile will be created.
      * @param array Holds the information of the profile to be created.
      * @return profile Which is either of customer, employee or manager type.
+     * @throws IOException Throws IO Exception.
      */
     public static Profile createProfile(String type,String[] array) throws IOException {
         Profile profile = null;

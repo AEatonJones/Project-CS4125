@@ -52,7 +52,7 @@ public class Employee extends Customer {
     }
     /**
      * Setter which sets state and is needed due to state interface.
-     * 
+     * @param state The Employee's state.
      */
     public void setState(String state)
     {
@@ -81,16 +81,16 @@ public class Employee extends Customer {
     
     /**
      * Gets the state of the employee which is set to clocked in.
-     * @return the state of the employee.
+     * @return Returns true if employee is clocked-in else returns false.
      */
     public boolean clockedIn() {
-        return state.equals("Clocked-In");
+        return state instanceof ClockedIn;
     }
     /**
      * Gets the state of the employee which is set to clocked out.
-     * @return the state of the employee.
+     * @return Returns true if employee is clocked-out else returns false.
      */
     public boolean clockedOut() {
-        return state.equals("Clocked-Out");
+        return state instanceof ClockedOut;
     }
 }

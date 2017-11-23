@@ -6,6 +6,6 @@ public class ClockedOut extends State
      *Sets description to clocked out.
      */
     public ClockedOut() {
-        description = "ClockedOut";
+        description = "Clock-Out";
     }
 }

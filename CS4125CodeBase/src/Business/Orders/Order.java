@@ -48,15 +48,9 @@ public abstract class Order implements Comparable<Order>{
         etf += baseEtf;
         return etf;
     }
-    /**
-     * Gets the payment type (not needed anymore?)
-     * @return paymentType which is what form of payment will be used.
-     */
-    public String getPaymentType() {
-        return paymentType;
-    }
     
     public abstract String getDetails();
+    
     /**
      * Checks to see which order will be done quicker.
      * @return result Which is what order is faster.

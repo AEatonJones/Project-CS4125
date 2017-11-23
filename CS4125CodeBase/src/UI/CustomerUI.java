@@ -1,11 +1,8 @@
 package UI;
 
 import Business.Information_Managers.ProfileControl;
-import Business.Profiles.Customer;
+import Business.Profiles.*;
 import Business.Orders.Order;
-import Business.Profiles.Cafe;
-import Business.Profiles.Profile;
-import Business.Profiles.ProfileFactory;
 import Data.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -366,7 +363,7 @@ class PlaceOrder implements UI,ActionListener {
     JComboBox<Data.MenuItem> choices;
     DefaultListModel orderListModel;
     JList orderItems;
-    JComboBox<String> size, location;
+    JComboBox<String> size, location, paymentType;
     JButton addItem, place, back;
     Profile profile;
     
@@ -419,7 +416,7 @@ class PlaceOrder implements UI,ActionListener {
             window.add("Center", choicesPanel);
             
             JPanel controls = new JPanel();
-            controls.setLayout(new GridLayout(2, 2));
+            controls.setLayout(new GridLayout(3, 2));
             
             size = new JComboBox<String>();
             size.addItem("Small");
@@ -431,6 +428,11 @@ class PlaceOrder implements UI,ActionListener {
             location.addItem("To Stay");
             location.addItem("To Go");
             controls.add(location);
+            
+            paymentType = new JComboBox<String>();
+            paymentType.addItem("Credit Card");
+            paymentType.addItem("Cash on Arrival");
+            controls.add(paymentType);
             
             place = new JButton("Place Order");
             place.addActionListener(this);
@@ -474,14 +476,17 @@ class PlaceOrder implements UI,ActionListener {
             for(int itemCount = 0; itemCount < items.length; itemCount++)
                 items[itemCount] = (Data.MenuItem)orderListModel.get(itemCount);
             
+            int selectedIndex = paymentType.getSelectedIndex();
+            String selectedPayment = paymentType.getItemAt(selectedIndex);
+            
+            
             String decoration = size.getItemAt(size.getSelectedIndex()) + "Order";
             String concrete = location.getItemAt(location.getSelectedIndex()).replace(" ", "");
-            //Possible use for Java Reflection
             
             Constructor concreteConstructor = null;
             try{
                 concreteConstructor = Class.forName("Business.Orders." + concrete).getConstructor(Data.MenuItem[].class, String.class);
-                concreteOrder = (Order)concreteConstructor.newInstance((Object[]) items, "CC");
+                concreteOrder = (Order)concreteConstructor.newInstance((Object[]) items, selectedPayment);
 
                 Constructor decoratorConstructor = Class.forName("Business.Orders." + decoration).getConstructor(Order.class);
                 decoratedOrder = (Order)decoratorConstructor.newInstance(concreteOrder);

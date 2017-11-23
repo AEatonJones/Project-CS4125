@@ -18,9 +18,7 @@ public class Employee
     static Cafe waffe;
         
     public static void main(String [] args) throws IOException{
-        waffe = ProfileDB.getInstance().getCafeByDetails("waffe", "110 Main Street");
-        Business.Profiles.Employee employee = new Business.Profiles.Employee("Johnny", "Harpe", "", "", "", waffe);
-        
+        waffe = ProfileDB.getInstance().getCafeByDetails("waffe", "110 Main Street"); 
         EmployeeUI eUI = new EmployeeUI();
         
         Cafe waffe;
@@ -30,12 +28,10 @@ public class Employee
             waffe = ProfileDB.getInstance().getCafeByDetails("waffe", "110 Main Street");
         
             Data.MenuItem[] items = {new Data.MenuItem(waffe, "Scone", 3.0f, 1)};
-            order = new SmallOrder(new ToGo(items, "CC"));
+            order = new SmallOrder(new ToGo(items, "Credit Card"));
         }catch(IOException io){
             System.exit(1);
         }
-        
-        //eUI.addOrder(order);
         
         new AddOrderWindow().draw();
         eUI.draw();
@@ -56,13 +52,11 @@ class AddOrderWindow implements UI.UI{
             public void actionPerformed(ActionEvent e)
             {
                 MenuItem[] items = {new MenuItem(Employee.waffe, "Scone", 3.0f, 1)};
-                OrderDB.getInstance().addOrder(new SmallOrder(new ToGo(items, "Cash")));
+                OrderDB.getInstance().addOrder(new SmallOrder(new ToGo(items, "Credit Card")));
             }
         });
         
-        JButton pickNewOrder = new JButton("Pick Order");
         window.add(addNewOrder);
-        
         window.setVisible(true);
     }
 }

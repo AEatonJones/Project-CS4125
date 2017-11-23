@@ -14,7 +14,7 @@ public class MenuItemTest {
     public void init()
     {
         try{
-            cafe = new Cafe("Cafe great", "101 avenue", 10, "", "");
+            cafe = new Cafe("Cafe great", "101 avenue", 10, "", "",1000.00);
             item = new MenuItem(cafe, "Scone",10.0f, 4);
         }catch(Exception e){
             fail("Should not throw an Exception");

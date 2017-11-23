@@ -7,15 +7,14 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- *
- * @author hmaug
+ * Used  to modify accounts and change details.
  */
 public class ProfileControl {
    
     /**
-     *
+     *Assign an ID to the employee.
      * @param cafe Cafe object.
-     * @return
+     * @return ID The ID assigned to the employee.
      */
     public static int assignID(Cafe cafe) {
         int id = 0;
@@ -28,7 +27,7 @@ public class ProfileControl {
      * @param password Password for the profile which is logging in.
      * @param type Type of the profile which is logging in.
      * @return result if profile is there.
-     * @throws IOException
+     * @throws IOException Throws IO Exception.
      */
     public static Profile verifyProfile(String email,String password,int type) throws IOException {
         Profile result = null;
@@ -85,7 +84,7 @@ public class ProfileControl {
     /**
      * Removes selected employee from file if being promoted.
      * @param info Information on the profile.
-     * @throws IOException
+     * @throws IOException Throws IO Exception.
      */
     public static void removeFromFile(String info) throws IOException {
         String line;
@@ -111,7 +110,7 @@ public class ProfileControl {
      * Writes the info of employee which was promoted too a new file.
      * @param profile All the information of the profile.
      * @param type The type of the profile.
-     * @throws IOException
+     * @throws IOException Throws IO Exception.
      */
     public static void printToFile(String[] profile,int type) throws IOException {
         String filepath;
@@ -161,7 +160,7 @@ public class ProfileControl {
      * Adds new Manager info to file and returns that info.
      * @param cafe Cafe object.
      * @return Employee
-     * @throws IOException
+     * @throws IOException Throws IO EXception.
      */
     public static ArrayList<String> obtainEmployeeInfo(String cafe) throws IOException {
         ArrayList<String> Employee = new ArrayList<String>();
@@ -198,7 +197,7 @@ public class ProfileControl {
      *Check if details match that of a manager.
      * @param details Details of the profile.
      * @return result if profile is manager.
-     * @throws IOException
+     * @throws IOException Throws IO Exception.
      */
     public static boolean checkIfManager(String details) throws IOException {
         boolean result = false;
@@ -217,7 +216,7 @@ public class ProfileControl {
     /**
      * Finds employee details and promotes to manager by calling removeFromFile and printToFile.
      * @param details Details of the profile.
-     * @throws IOException
+     * @throws IOException Throws IO Exception.
      */
     public static void promoteToManager(String details) throws IOException {
         boolean found = false;
