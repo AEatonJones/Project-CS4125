@@ -3,7 +3,7 @@ package Business.State;
 public class ClockedIn extends State
 {
     /**
-     *Sets description to clocked in.
+     *Constructs a ClockedIn object.
      */
     public ClockedIn() {
         description = "Clock-In";
