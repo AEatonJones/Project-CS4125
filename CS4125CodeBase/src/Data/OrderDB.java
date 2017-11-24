@@ -14,7 +14,7 @@ public class OrderDB implements Database<Order>, Subject{
     private static OrderDB instance = null;
     
     /**
-    * 
+    * Private Constructor used to initialise the instance variable.
     */
     private OrderDB()
     {
