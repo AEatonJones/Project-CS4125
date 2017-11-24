@@ -8,6 +8,7 @@ import Data.OrderDB;
 */
 public interface OrderObserver{
     /**
+     * Uses the provided action on the given Order.
      * @param order The affecting order.
      * @param action The specified action to use on the order.
      */
