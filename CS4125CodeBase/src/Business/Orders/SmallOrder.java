@@ -6,7 +6,7 @@ import Data.MenuItem;
 public class SmallOrder extends OrderDecorator 
 {
     /**
-     * Gets the items on the order.
+     * Decorates a given Order object as a small order.
      * @param order Current order.
      */
     public SmallOrder(Order order){

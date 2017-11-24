@@ -4,7 +4,7 @@ import Business.Information_Managers.OrderObserver;
 
 public class MediumOrder extends OrderDecorator{
     /**
-     * Gets all items on the order.
+     * Decorates a given Order object as a medium order.
      * @param order Current order.
      */
     public MediumOrder(Order order){

@@ -4,7 +4,7 @@ import Data.MenuItem;
 
 public class LargeOrder extends OrderDecorator{
     /**
-     * Gets all the info of the items in the order.
+     * Decorates a given Order object as a large order.
      * @param order Current order.
      */
     public LargeOrder(Order order){
