@@ -1,0 +1,4 @@
+Make Order, Payment are next use cases
+Order queue and how to organise
+PaymentGateway
+Use Design Patterns: Decorator for Orders
